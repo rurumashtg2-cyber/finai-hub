@@ -3,249 +3,180 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FinAI Hub · 金融AI工具精选导航</title>
+<title>FinAI Hub · 投资研究工作流导航</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Noto+Serif+SC:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f5f0e8;
-  --bg2: #ede8dc;
-  --surface: #faf7f2;
-  --surface2: #f0ece2;
-  --border: #d9d0be;
-  --border-light: #e8e2d4;
-  --ink: #1a1a14;
-  --ink2: #2d2d22;
-  --muted: #7a7464;
-  --muted2: #a09880;
-  --green: #1a4a2e;
-  --green2: #2a6644;
-  --green-light: rgba(26,74,46,0.08);
-  --green-light2: rgba(26,74,46,0.14);
-  --gold: #c9922a;
-  --gold2: #e8aa3a;
-  --gold-light: rgba(201,146,42,0.1);
-  --red: #c0392b;
-  --red-light: rgba(192,57,43,0.08);
-  --teal: #1a6b6b;
-  --teal-light: rgba(26,107,107,0.08);
+  --bg:#f5f0e8; --bg2:#ede8dc; --surface:#faf7f2; --surface2:#f0ece2;
+  --border:#d9d0be; --border-light:#e8e2d4;
+  --ink:#1a1a14; --ink2:#2d2d22; --muted:#7a7464; --muted2:#a09880;
+  --green:#1a4a2e; --green2:#2a6644;
+  --gl:rgba(26,74,46,0.08); --gl2:rgba(26,74,46,0.14);
+  --gold:#c9922a; --gold2:#e8aa3a; --goldl:rgba(201,146,42,0.1);
+  --red:#c0392b;
+  --teal:#1a6b6b; --teal-l:rgba(26,107,107,0.08);
+  --blue:#1a3a6b; --blue-l:rgba(26,58,107,0.08);
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { background:var(--bg); color:var(--ink); font-family:'Noto Sans SC',sans-serif; overflow-x:hidden; }
-body::before {
-  content:''; position:fixed; inset:0;
-  background-image: linear-gradient(rgba(26,74,46,0.025) 1px,transparent 1px), linear-gradient(90deg,rgba(26,74,46,0.025) 1px,transparent 1px);
-  background-size:40px 40px; pointer-events:none; z-index:0;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(26,74,46,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(26,74,46,0.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
 
 /* TICKER */
-.ticker-bar { position:relative; z-index:10; background:var(--green); color:rgba(255,255,255,0.85); font-family:'IBM Plex Mono',monospace; font-size:11.5px; padding:6px 0; overflow:hidden; border-bottom:2px solid var(--gold); }
-.ticker-track { display:flex; animation:tickerScroll 40s linear infinite; white-space:nowrap; width:max-content; }
-@keyframes tickerScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-.ticker-item { display:inline-flex; align-items:center; gap:6px; padding:0 28px; border-right:1px solid rgba(255,255,255,0.15); }
-.ticker-name { color:rgba(255,255,255,0.55); }
-.ticker-val { color:#fff; font-weight:500; }
-.ticker-chg.up { color:#5ddd8a; }
-.ticker-chg.dn { color:#ff8070; }
-.ticker-label { position:absolute; left:0; top:0; bottom:0; background:var(--gold); color:var(--green); font-weight:500; padding:0 16px; display:flex; align-items:center; font-size:10px; letter-spacing:1.5px; z-index:2; }
+.ticker-bar{position:relative;z-index:10;background:var(--green);color:rgba(255,255,255,0.85);font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:6px 0;overflow:hidden;border-bottom:2px solid var(--gold);}
+.ticker-track{display:flex;animation:tick 40s linear infinite;white-space:nowrap;width:max-content;}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-item{display:inline-flex;align-items:center;gap:6px;padding:0 26px;border-right:1px solid rgba(255,255,255,0.15);}
+.tn{color:rgba(255,255,255,0.5);} .tv{color:#fff;font-weight:500;} .tc.up{color:#5ddd8a;} .tc.dn{color:#ff8070;}
+.ticker-label{position:absolute;left:0;top:0;bottom:0;background:var(--gold);color:var(--green);font-weight:600;padding:0 14px;display:flex;align-items:center;font-size:10px;letter-spacing:1.5px;z-index:2;}
 
 /* NAV */
-nav { position:sticky; top:0; z-index:100; background:var(--surface); border-bottom:1px solid var(--border); padding:0 48px; height:62px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 20px rgba(26,74,46,0.06); }
-.logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
-.logo-mark { width:34px; height:34px; background:var(--green); border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:18px; color:var(--gold2); font-weight:800; }
-.logo-text { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--green); }
-.logo-sub { font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:2px; display:block; margin-top:-2px; }
-.nav-right { display:flex; align-items:center; gap:10px; }
-.nav-search { display:flex; align-items:center; gap:8px; background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:7px 14px; transition:all 0.2s; }
-.nav-search:focus-within { border-color:var(--green); box-shadow:0 0 0 3px rgba(26,74,46,0.08); }
-.nav-search input { border:none; background:transparent; font-size:13px; color:var(--ink); outline:none; width:200px; font-family:'Noto Sans SC',sans-serif; }
-.nav-search input::placeholder { color:var(--muted2); }
-.submit-btn { padding:8px 18px; border-radius:8px; background:var(--green); color:#fff; font-size:13px; border:none; cursor:pointer; font-family:'Noto Sans SC',sans-serif; font-weight:500; transition:all 0.2s; }
-.submit-btn:hover { background:var(--green2); box-shadow:0 4px 16px rgba(26,74,46,0.25); transform:translateY(-1px); }
+nav{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);padding:0 48px;height:60px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 16px rgba(26,74,46,0.06);}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-mark{width:32px;height:32px;background:var(--green);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:17px;color:var(--gold2);font-weight:800;}
+.logo-text{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:var(--green);}
+.logo-sub{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;display:block;margin-top:-2px;}
+.nav-tabs{display:flex;gap:2px;}
+.nav-tab{padding:6px 14px;border-radius:6px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-family:'Noto Sans SC',sans-serif;transition:all 0.2s;}
+.nav-tab:hover{color:var(--green);background:var(--gl);}
+.nav-tab.active{color:var(--green);background:var(--gl2);font-weight:500;}
+.submit-btn{padding:7px 16px;border-radius:7px;background:var(--green);color:#fff;font-size:13px;border:none;cursor:pointer;font-family:'Noto Sans SC',sans-serif;font-weight:500;transition:all 0.2s;}
+.submit-btn:hover{background:var(--green2);transform:translateY(-1px);}
 
 /* HERO */
-.hero { position:relative; z-index:1; background:linear-gradient(135deg,var(--green) 0%,#0f3320 100%); padding:64px 48px 56px; overflow:hidden; }
-.hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(201,146,42,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,146,42,0.06) 1px,transparent 1px); background-size:32px 32px; }
-.hero::after { content:''; position:absolute; right:-100px; top:-100px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(201,146,42,0.12),transparent 70%); pointer-events:none; }
-.hero-inner { position:relative; z-index:1; max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; }
-.hero-badge { display:inline-flex; align-items:center; gap:8px; padding:5px 14px; border:1px solid rgba(201,146,42,0.5); border-radius:4px; background:rgba(201,146,42,0.12); font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold2); letter-spacing:2px; margin-bottom:22px; }
-.hero-title { font-family:'Playfair Display',serif; font-size:clamp(32px,4vw,52px); font-weight:800; color:#fff; line-height:1.18; margin-bottom:16px; }
-.hero-title .gold { color:var(--gold2); }
-.hero-desc { color:rgba(255,255,255,0.6); font-size:15px; line-height:1.75; max-width:500px; margin-bottom:32px; font-weight:300; }
-.hero-ctas { display:flex; gap:12px; }
-.cta-primary { padding:11px 26px; background:var(--gold); color:var(--green); border:none; border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; }
-.cta-primary:hover { background:var(--gold2); box-shadow:0 6px 24px rgba(201,146,42,0.4); transform:translateY(-2px); }
-.cta-secondary { padding:11px 22px; background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.85); border:1px solid rgba(255,255,255,0.2); border-radius:8px; font-size:14px; cursor:pointer; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; }
-.cta-secondary:hover { background:rgba(255,255,255,0.16); }
-.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.1); border-radius:12px; overflow:hidden; min-width:260px; }
-.hero-stat { background:rgba(0,0,0,0.2); padding:20px 18px; text-align:center; }
-.hero-stat-num { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--gold2); display:block; }
-.hero-stat-label { font-size:11px; color:rgba(255,255,255,0.5); margin-top:4px; }
+.hero{position:relative;z-index:1;background:linear-gradient(135deg,var(--green),#0f3320);padding:56px 48px 48px;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(201,146,42,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,146,42,0.06) 1px,transparent 1px);background-size:32px 32px;}
+.hero::after{content:'';position:absolute;right:-80px;top:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(201,146,42,0.12),transparent 70%);pointer-events:none;}
+.hero-inner{position:relative;z-index:1;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:4px 12px;border:1px solid rgba(201,146,42,0.5);border-radius:4px;background:rgba(201,146,42,0.1);font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--gold2);letter-spacing:2px;margin-bottom:18px;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(30px,3.5vw,48px);font-weight:800;color:#fff;line-height:1.2;margin-bottom:14px;}
+.hero-title .gold{color:var(--gold2);}
+.hero-desc{color:rgba(255,255,255,0.6);font-size:14px;line-height:1.8;max-width:480px;margin-bottom:28px;font-weight:300;}
+.hero-ctas{display:flex;gap:10px;}
+.cta-p{padding:10px 24px;background:var(--gold);color:var(--green);border:none;border-radius:7px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:'Noto Sans SC',sans-serif;transition:all 0.2s;}
+.cta-p:hover{background:var(--gold2);box-shadow:0 5px 20px rgba(201,146,42,0.4);transform:translateY(-2px);}
+.cta-s{padding:10px 20px;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.85);border:1px solid rgba(255,255,255,0.2);border-radius:7px;font-size:13.5px;cursor:pointer;font-family:'Noto Sans SC',sans-serif;transition:all 0.2s;}
+.cta-s:hover{background:rgba(255,255,255,0.16);}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;min-width:240px;}
+.hstat{background:rgba(0,0,0,0.2);padding:18px 16px;text-align:center;}
+.hstat-n{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--gold2);display:block;}
+.hstat-l{font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px;}
 
-/* MAIN LAYOUT */
-.main { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:40px 40px; display:grid; grid-template-columns:1fr 290px; gap:32px; }
+/* MAIN */
+.main{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:36px 40px;display:grid;grid-template-columns:1fr 280px;gap:28px;}
 
-/* TOOLBAR */
-.toolbar { display:flex; align-items:center; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
-.cat-tabs { display:flex; gap:0; border:1px solid var(--border); border-radius:10px; background:var(--surface); padding:4px; overflow-x:auto; scrollbar-width:none; flex:1; }
-.cat-tabs::-webkit-scrollbar { display:none; }
-.cat-tab { flex-shrink:0; padding:7px 14px; border-radius:7px; border:none; background:transparent; color:var(--muted); cursor:pointer; font-size:13px; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; white-space:nowrap; }
-.cat-tab:hover { color:var(--green); background:var(--green-light); }
-.cat-tab.active { background:var(--green); color:#fff; font-weight:500; }
+/* SCENARIO TABS */
+.scenario-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;}
+.stab{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:all 0.2s;font-family:'Noto Sans SC',sans-serif;font-size:13px;color:var(--muted);}
+.stab:hover{border-color:rgba(26,74,46,0.3);color:var(--ink);}
+.stab.active{background:var(--green);border-color:var(--green);color:#fff;}
+.stab .s-icon{font-size:17px;}
+.stab .s-label{font-weight:500;}
+.stab .s-count{font-family:'IBM Plex Mono',monospace;font-size:10px;background:rgba(255,255,255,0.15);padding:1px 6px;border-radius:4px;}
+.stab:not(.active) .s-count{background:var(--gl2);color:var(--green);}
 
-.sort-select { padding:8px 14px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--ink); font-size:13px; font-family:'Noto Sans SC',sans-serif; cursor:pointer; outline:none; flex-shrink:0; }
-.sort-select:focus { border-color:var(--green); }
+/* SCENARIO PANEL */
+.scenario-panel{animation:riseIn 0.3s ease both;}
+@keyframes riseIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.scenario-header{background:var(--green);border-radius:12px 12px 0 0;padding:22px 26px;display:flex;align-items:flex-start;gap:18px;position:relative;overflow:hidden;}
+.scenario-header::before{content:'';position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(201,146,42,0.1);}
+.sh-icon{font-size:34px;flex-shrink:0;position:relative;}
+.sh-body{flex:1;position:relative;}
+.sh-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:800;color:#fff;margin-bottom:6px;}
+.sh-desc{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;max-width:600px;}
+.sh-meta{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.sh-badge{padding:3px 10px;border-radius:4px;font-size:10px;font-family:'IBM Plex Mono',monospace;background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.75);border:1px solid rgba(255,255,255,0.15);}
+.sh-badge.gold{background:rgba(201,146,42,0.2);color:var(--gold2);border-color:rgba(201,146,42,0.3);}
 
-.filter-row { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
-.filter-chip { padding:5px 14px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--muted); font-size:12px; cursor:pointer; transition:all 0.18s; font-family:'Noto Sans SC',sans-serif; }
-.filter-chip:hover { border-color:var(--green); color:var(--green); }
-.filter-chip.active { background:var(--green-light2); border-color:var(--green); color:var(--green); }
+/* STEPS */
+.steps-container{background:var(--surface);border:1px solid var(--border-light);border-top:none;border-radius:0 0 12px 12px;overflow:hidden;}
+.step{border-bottom:1px solid var(--border-light);}
+.step:last-child{border-bottom:none;}
+.step-header{padding:15px 22px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:background 0.15s;user-select:none;}
+.step-header:hover{background:var(--bg2);}
+.step-num{width:27px;height:27px;border-radius:50%;background:var(--green);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.step.optional .step-num{background:var(--muted2);}
+.step-title-wrap{flex:1;}
+.step-title{font-size:14px;font-weight:600;color:var(--ink);}
+.step-subtitle{font-size:12px;color:var(--muted);margin-top:2px;}
+.step-tags{display:flex;gap:5px;margin-top:4px;flex-wrap:wrap;}
+.step-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-family:'IBM Plex Mono',monospace;}
+.st-freq{background:rgba(201,146,42,0.1);color:var(--gold);border:1px solid rgba(201,146,42,0.2);}
+.st-opt{background:var(--gl);color:var(--muted);border:1px solid var(--border-light);}
+.st-key{background:var(--gl2);color:var(--green);border:1px solid rgba(26,74,46,0.2);}
+.step-toggle{color:var(--muted);transition:transform 0.2s;font-size:11px;}
+.step.open .step-toggle{transform:rotate(180deg);}
+.step-body{display:none;padding:0 22px 18px 63px;}
+.step.open .step-body{display:block;}
 
-/* RESULTS BAR */
-.results-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
-.results-count { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); }
-.results-count span { color:var(--green); font-weight:500; }
-.view-toggle { display:flex; gap:4px; }
-.view-btn { width:30px; height:30px; border-radius:6px; border:1px solid var(--border); background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:14px; transition:all 0.15s; }
-.view-btn.active { background:var(--green-light2); border-color:var(--green); }
+/* RESOURCE TABLE */
+.res-table{width:100%;border-collapse:collapse;margin-bottom:10px;}
+.res-table th{font-size:10px;font-family:'IBM Plex Mono',monospace;color:var(--muted2);font-weight:500;padding:5px 10px;border-bottom:1px solid var(--border-light);text-align:left;letter-spacing:0.5px;}
+.res-table td{font-size:12.5px;padding:9px 10px;border-bottom:1px solid var(--border-light);vertical-align:top;}
+.res-table tr:last-child td{border-bottom:none;}
+.res-table tr:hover td{background:rgba(26,74,46,0.02);}
+.res-platform{font-weight:700;color:var(--ink);white-space:nowrap;font-size:12.5px;}
+.res-indicator{color:var(--ink);font-size:12px;}
+.res-desc{font-size:12px;color:var(--muted);line-height:1.55;}
+.res-link{display:inline-flex;align-items:center;gap:3px;padding:4px 10px;border-radius:5px;background:var(--gl2);border:1px solid rgba(26,74,46,0.18);color:var(--green);font-size:11px;font-weight:500;text-decoration:none;transition:all 0.15s;white-space:nowrap;}
+.res-link:hover{background:var(--green);color:#fff;}
 
-/* TOOLS GRID */
-.tools-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
-.tools-grid.list-view { grid-template-columns:1fr; }
-
-/* TOOL CARD */
-.tool-card {
-  background:var(--surface); border:1px solid var(--border-light); border-radius:12px; padding:18px;
-  cursor:pointer; transition:all 0.22s; text-decoration:none; color:inherit;
-  display:flex; flex-direction:column; position:relative; overflow:hidden;
-  animation:riseIn 0.4s ease both;
-}
-@keyframes riseIn { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
-.tool-card:hover { border-color:rgba(26,74,46,0.3); box-shadow:0 6px 30px rgba(26,74,46,0.1); transform:translateY(-2px); }
-.tool-card.featured { border-color:rgba(201,146,42,0.3); background:linear-gradient(135deg,#faf7f2,#f5f0e0); }
-.tool-card.featured::after { content:'★ 精选'; position:absolute; top:0; right:0; background:var(--gold); color:var(--green); font-size:10px; font-weight:700; font-family:'IBM Plex Mono',monospace; padding:4px 10px; border-radius:0 12px 0 8px; letter-spacing:1px; }
-
-/* list view card */
-.tools-grid.list-view .tool-card { flex-direction:row; align-items:center; gap:16px; padding:14px 18px; }
-.tools-grid.list-view .tool-top { margin-bottom:0; flex-shrink:0; }
-.tools-grid.list-view .tool-body { flex:1; }
-.tools-grid.list-view .tool-desc { -webkit-line-clamp:1; margin-bottom:6px; }
-.tools-grid.list-view .tool-footer { padding-top:0; border-top:none; }
-
-.tool-top { display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; }
-.tool-icon { width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
-.tool-meta { flex:1; }
-.tool-name { font-size:15px; font-weight:700; color:var(--ink); margin-bottom:5px; font-family:'Noto Serif SC',serif; }
-.tool-tags { display:flex; gap:5px; flex-wrap:wrap; }
-.tag { font-size:10px; padding:2px 8px; border-radius:4px; font-family:'IBM Plex Mono',monospace; }
-.tag-cat { background:var(--green-light2); color:var(--green); border:1px solid rgba(26,74,46,0.15); }
-.tag-free { background:var(--teal-light); color:var(--teal); border:1px solid rgba(26,107,107,0.15); }
-.tag-paid { background:var(--gold-light); color:var(--gold); border:1px solid rgba(201,146,42,0.2); }
-.tag-freemium { background:rgba(100,100,200,0.08); color:#4a4aaa; border:1px solid rgba(100,100,200,0.15); }
-.tag-new { background:var(--red-light); color:var(--red); border:1px solid rgba(192,57,43,0.15); }
-.tag-mkt { background:rgba(26,74,46,0.06); color:var(--muted); border:1px solid var(--border-light); }
-.tool-desc { font-size:12.5px; color:var(--muted); line-height:1.65; margin-bottom:14px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-.tool-footer { display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid var(--border-light); }
-.tool-rating { display:flex; align-items:center; gap:4px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--gold); }
-.tool-rating span { color:var(--muted2); }
-.tool-users { font-size:11px; color:var(--muted2); font-family:'IBM Plex Mono',monospace; }
-.tool-btn { padding:5px 14px; border-radius:6px; background:var(--green-light2); border:1px solid rgba(26,74,46,0.2); color:var(--green); font-size:12px; cursor:pointer; transition:all 0.2s; font-family:'Noto Sans SC',sans-serif; font-weight:500; text-decoration:none; }
-.tool-btn:hover { background:var(--green); color:#fff; }
-
-/* EMPTY STATE */
-.empty-state { grid-column:1/-1; text-align:center; padding:60px 20px; }
-.empty-state .emoji { font-size:48px; margin-bottom:16px; }
-.empty-state h3 { font-family:'Playfair Display',serif; font-size:20px; color:var(--ink); margin-bottom:8px; }
-.empty-state p { color:var(--muted); font-size:14px; }
-
-/* PAGINATION */
-.pagination { display:flex; justify-content:center; align-items:center; gap:8px; margin-top:28px; padding-bottom:10px; }
-.page-btn { width:36px; height:36px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--muted); cursor:pointer; font-size:13px; font-family:'IBM Plex Mono',monospace; transition:all 0.15s; display:flex; align-items:center; justify-content:center; }
-.page-btn:hover { border-color:var(--green); color:var(--green); }
-.page-btn.active { background:var(--green); color:#fff; border-color:var(--green); }
-.page-btn:disabled { opacity:0.4; cursor:not-allowed; }
+/* TIP BOX */
+.tip-box{background:linear-gradient(135deg,rgba(201,146,42,0.06),rgba(201,146,42,0.02));border:1px solid rgba(201,146,42,0.2);border-radius:8px;padding:11px 15px;margin-top:8px;display:flex;gap:9px;}
+.tip-icon{font-size:15px;flex-shrink:0;margin-top:1px;}
+.tip-text{font-size:12.5px;color:var(--ink);line-height:1.65;}
+.tip-text strong{color:var(--gold);}
 
 /* SIDEBAR */
-.sidebar { display:flex; flex-direction:column; gap:20px; }
-.sidebar-card { background:var(--surface); border:1px solid var(--border-light); border-radius:12px; overflow:hidden; }
-.sidebar-head { padding:14px 18px; border-bottom:1px solid var(--border-light); font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:8px; }
-.sidebar-head .dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+.sidebar{display:flex;flex-direction:column;gap:18px;}
+.sc{background:var(--surface);border:1px solid var(--border-light);border-radius:12px;overflow:hidden;}
+.sc-head{padding:12px 16px;border-bottom:1px solid var(--border-light);font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:7px;}
+.sc-head .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.brief-list{padding:10px 16px;display:flex;flex-direction:column;gap:8px;}
+.brief-row{display:flex;justify-content:space-between;align-items:center;}
+.bl{font-size:11px;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
+.bv{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:var(--ink);}
+.bc{font-family:'IBM Plex Mono',monospace;font-size:10.5px;}
+.bc.up{color:#1a8a3a;} .bc.dn{color:var(--red);}
+.bdiv{height:1px;background:var(--border-light);}
 
-/* RANKING */
-.rank-list { padding:6px 0; }
-.rank-row { padding:9px 18px; display:flex; align-items:center; gap:10px; cursor:pointer; transition:background 0.15s; }
-.rank-row:hover { background:var(--bg2); }
-.rank-n { font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; width:18px; text-align:center; flex-shrink:0; }
-.rank-n.g{color:var(--gold)} .rank-n.s{color:#8a8a8a} .rank-n.b{color:#a0724a} .rank-n.o{color:var(--muted2);font-size:11px}
-.rank-ico { width:30px; height:30px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
-.rank-info { flex:1; }
-.rank-name { font-size:13px; font-weight:600; color:var(--ink); }
-.rank-cat { font-size:11px; color:var(--muted2); margin-top:1px; }
-.rank-score { font-family:'IBM Plex Mono',monospace; font-size:11px; flex-shrink:0; }
-.up{color:#1a8a3a} .dn{color:var(--red)}
-
-/* MARKET */
-.brief-list { padding:12px 18px; display:flex; flex-direction:column; gap:9px; }
-.brief-row { display:flex; justify-content:space-between; align-items:center; }
-.brief-label { font-size:12px; color:var(--muted); font-family:'IBM Plex Mono',monospace; }
-.brief-val { font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; color:var(--ink); }
-.brief-chg { font-family:'IBM Plex Mono',monospace; font-size:11px; }
-.brief-divider { height:1px; background:var(--border-light); }
+/* QUICK LINKS */
+.qlinks{padding:8px 10px 12px;}
+.qlink-group{margin-bottom:10px;}
+.qlink-group:last-child{margin-bottom:0;}
+.qlink-label{font-size:10px;font-family:'IBM Plex Mono',monospace;color:var(--muted2);letter-spacing:1px;padding:0 6px;margin-bottom:4px;}
+.qlink{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:6px;text-decoration:none;color:var(--ink);transition:all 0.15s;font-size:12px;}
+.qlink:hover{background:var(--bg2);color:var(--green);}
+.qlink-icon{font-size:14px;width:20px;text-align:center;flex-shrink:0;}
+.qlink-text{flex:1;}
+.qlink-arrow{color:var(--muted2);font-size:10px;}
 
 /* NEWSLETTER */
-.newsletter { background:linear-gradient(135deg,var(--green),#0f3320); border-radius:12px; padding:22px; position:relative; overflow:hidden; }
-.newsletter::before { content:''; position:absolute; right:-30px; top:-30px; width:120px; height:120px; border-radius:50%; background:rgba(201,146,42,0.15); }
-.newsletter h3 { font-family:'Playfair Display',serif; font-size:16px; color:#fff; margin-bottom:8px; position:relative; }
-.newsletter p { font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:14px; line-height:1.6; position:relative; }
-.nl-input { width:100%; padding:8px 12px; border-radius:7px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.08); color:#fff; font-size:13px; font-family:'Noto Sans SC',sans-serif; outline:none; margin-bottom:8px; }
-.nl-input::placeholder{color:rgba(255,255,255,0.35)}
-.nl-btn { width:100%; padding:9px; border-radius:7px; background:var(--gold); color:var(--green); border:none; font-size:13px; font-weight:700; cursor:pointer; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; }
-.nl-btn:hover{background:var(--gold2)}
-
-/* HOT TAGS */
-.hot-tags { padding:12px 16px; display:flex; flex-wrap:wrap; gap:6px; }
-.hot-tag { padding:4px 11px; border-radius:5px; border:1px solid var(--border); background:var(--bg2); font-size:12px; color:var(--muted); cursor:pointer; transition:all 0.2s; }
-.hot-tag:hover { border-color:var(--green); color:var(--green); background:var(--green-light); }
+.newsletter{background:linear-gradient(135deg,var(--green),#0f3320);border-radius:12px;padding:20px;position:relative;overflow:hidden;}
+.newsletter::before{content:'';position:absolute;right:-20px;top:-20px;width:100px;height:100px;border-radius:50%;background:rgba(201,146,42,0.15);}
+.newsletter h3{font-family:'Playfair Display',serif;font-size:15px;color:#fff;margin-bottom:7px;position:relative;}
+.newsletter p{font-size:11.5px;color:rgba(255,255,255,0.6);margin-bottom:12px;line-height:1.6;position:relative;}
+.nl-input{width:100%;padding:7px 11px;border-radius:6px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:#fff;font-size:12.5px;font-family:'Noto Sans SC',sans-serif;outline:none;margin-bottom:7px;}
+.nl-input::placeholder{color:rgba(255,255,255,0.35);}
+.nl-btn{width:100%;padding:8px;border-radius:6px;background:var(--gold);color:var(--green);border:none;font-size:13px;font-weight:700;cursor:pointer;font-family:'Noto Sans SC',sans-serif;}
+.nl-btn:hover{background:var(--gold2);}
 
 /* FOOTER */
-footer { position:relative; z-index:1; background:var(--ink2); color:rgba(255,255,255,0.5); padding:36px 48px; display:grid; grid-template-columns:auto 1fr auto; gap:40px; align-items:start; }
-.footer-brand .footer-logo { font-family:'Playfair Display',serif; font-size:20px; font-weight:800; color:var(--gold2); margin-bottom:8px; }
-.footer-brand p { font-size:12px; line-height:1.7; max-width:200px; }
-.footer-links-grid { display:flex; gap:40px; }
-.footer-col h4 { font-size:11px; color:rgba(255,255,255,0.7); letter-spacing:1px; margin-bottom:10px; font-family:'IBM Plex Mono',monospace; }
-.footer-col a { display:block; font-size:12px; color:rgba(255,255,255,0.4); text-decoration:none; margin-bottom:7px; transition:color 0.2s; cursor:pointer; }
-.footer-col a:hover{color:rgba(255,255,255,0.8)}
-.footer-copy { font-size:11px; text-align:right; line-height:1.8; }
+footer{position:relative;z-index:1;background:var(--ink2);color:rgba(255,255,255,0.5);padding:32px 48px;display:grid;grid-template-columns:auto 1fr auto;gap:40px;align-items:start;}
+.fl{font-family:'Playfair Display',serif;font-size:18px;font-weight:800;color:var(--gold2);margin-bottom:6px;}
+footer p{font-size:12px;line-height:1.7;max-width:180px;}
+.flg{display:flex;gap:36px;}
+.fc h4{font-size:10px;color:rgba(255,255,255,0.6);letter-spacing:1px;margin-bottom:8px;font-family:'IBM Plex Mono',monospace;}
+.fc a{display:block;font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;margin-bottom:6px;cursor:pointer;transition:color 0.2s;}
+.fc a:hover{color:rgba(255,255,255,0.8);}
+.fcopy{font-size:11px;text-align:right;line-height:1.8;}
 
 /* TOAST */
-.toast { position:fixed; bottom:28px; right:28px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:12px 18px; font-size:13.5px; color:var(--ink); z-index:999; box-shadow:0 8px 32px rgba(26,74,46,0.15); animation:toastIn 0.3s ease; display:flex; align-items:center; gap:8px; transition:all 0.3s; }
-@keyframes toastIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.toast{position:fixed;bottom:26px;right:26px;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:11px 16px;font-size:13px;color:var(--ink);z-index:999;box-shadow:0 8px 28px rgba(26,74,46,0.15);animation:toastIn 0.3s ease;}
+@keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* MODAL */
-.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200; display:flex; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(4px); animation:fadeIn 0.2s ease; }
-@keyframes fadeIn { from{opacity:0} to{opacity:1} }
-.modal { background:var(--surface); border:1px solid var(--border); border-radius:16px; max-width:580px; width:100%; padding:32px; position:relative; animation:slideUp 0.25s ease; max-height:85vh; overflow-y:auto; }
-@keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-.modal-close { position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:8px; border:1px solid var(--border); background:transparent; cursor:pointer; font-size:16px; color:var(--muted); display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
-.modal-close:hover { background:var(--bg2); color:var(--ink); }
-.modal-icon { width:64px; height:64px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:30px; margin-bottom:18px; }
-.modal-name { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:var(--ink); margin-bottom:10px; }
-.modal-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
-.modal-desc { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:20px; }
-.modal-meta { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:22px; }
-.meta-item { background:var(--bg2); border-radius:8px; padding:12px 14px; }
-.meta-label { font-size:11px; color:var(--muted2); font-family:'IBM Plex Mono',monospace; margin-bottom:4px; }
-.meta-val { font-size:14px; font-weight:600; color:var(--ink); }
-.modal-markets { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px; }
-.market-tag { padding:4px 12px; border-radius:5px; background:var(--green-light); border:1px solid rgba(26,74,46,0.15); font-size:12px; color:var(--green); }
-.modal-cta { display:flex; gap:10px; }
-.modal-visit { flex:1; padding:12px; border-radius:9px; background:var(--green); color:#fff; border:none; font-size:14px; font-weight:700; cursor:pointer; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; text-align:center; text-decoration:none; display:block; }
-.modal-visit:hover { background:var(--green2); }
-.modal-save { padding:12px 20px; border-radius:9px; background:transparent; border:1px solid var(--border); color:var(--muted); font-size:14px; cursor:pointer; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; }
-.modal-save:hover { border-color:var(--gold); color:var(--gold); }
-
-@media(max-width:1000px){.main{grid-template-columns:1fr}.sidebar{display:none}.hero-inner{grid-template-columns:1fr}.hero-stats{display:none}}
-@media(max-width:700px){nav{padding:0 20px}.hero{padding:44px 20px}.main{padding:24px 20px}.tools-grid{grid-template-columns:1fr}footer{grid-template-columns:1fr}.footer-links-grid{flex-wrap:wrap;gap:20px}}
+@media(max-width:1000px){.main{grid-template-columns:1fr}.sidebar{display:none}.hero-inner{grid-template-columns:1fr}.hero-stats{display:none}.step-body{padding:0 16px 16px;}}
+@media(max-width:700px){nav{padding:0 16px}.nav-tabs{display:none}.hero{padding:40px 20px}.main{padding:20px 16px}footer{grid-template-columns:1fr}.flg{flex-wrap:wrap;gap:20px}.res-table thead{display:none}.res-table td{display:block;padding:4px 8px}.res-table tr{border-bottom:1px solid var(--border-light);padding:8px 0;display:block}}
 </style>
 </head>
 <body>
@@ -253,26 +184,28 @@ footer { position:relative; z-index:1; background:var(--ink2); color:rgba(255,25
 <!-- TICKER -->
 <div class="ticker-bar">
   <span class="ticker-label">MARKET</span>
-  <div style="overflow:hidden;padding-left:80px">
+  <div style="overflow:hidden;padding-left:76px">
     <div class="ticker-track">
-      <span class="ticker-item"><span class="ticker-name">SPX</span><span class="ticker-val">5,224.62</span><span class="ticker-chg up">+0.86%</span></span>
-      <span class="ticker-item"><span class="ticker-name">NDX</span><span class="ticker-val">18,339.44</span><span class="ticker-chg up">+1.22%</span></span>
-      <span class="ticker-item"><span class="ticker-name">HSI</span><span class="ticker-val">20,187.31</span><span class="ticker-chg dn">-0.43%</span></span>
-      <span class="ticker-item"><span class="ticker-name">USDJPY</span><span class="ticker-val">149.82</span><span class="ticker-chg up">+0.31%</span></span>
-      <span class="ticker-item"><span class="ticker-name">GOLD</span><span class="ticker-val">3,047.50</span><span class="ticker-chg up">+0.54%</span></span>
-      <span class="ticker-item"><span class="ticker-name">BTC</span><span class="ticker-val">84,210</span><span class="ticker-chg dn">-1.87%</span></span>
-      <span class="ticker-item"><span class="ticker-name">WTI</span><span class="ticker-val">68.44</span><span class="ticker-chg dn">-0.62%</span></span>
-      <span class="ticker-item"><span class="ticker-name">US10Y</span><span class="ticker-val">4.31%</span><span class="ticker-chg up">+2bp</span></span>
-      <span class="ticker-item"><span class="ticker-name">USDCNH</span><span class="ticker-val">7.2841</span><span class="ticker-chg dn">-0.12%</span></span>
-      <span class="ticker-item"><span class="ticker-name">SPX</span><span class="ticker-val">5,224.62</span><span class="ticker-chg up">+0.86%</span></span>
-      <span class="ticker-item"><span class="ticker-name">NDX</span><span class="ticker-val">18,339.44</span><span class="ticker-chg up">+1.22%</span></span>
-      <span class="ticker-item"><span class="ticker-name">HSI</span><span class="ticker-val">20,187.31</span><span class="ticker-chg dn">-0.43%</span></span>
-      <span class="ticker-item"><span class="ticker-name">USDJPY</span><span class="ticker-val">149.82</span><span class="ticker-chg up">+0.31%</span></span>
-      <span class="ticker-item"><span class="ticker-name">GOLD</span><span class="ticker-val">3,047.50</span><span class="ticker-chg up">+0.54%</span></span>
-      <span class="ticker-item"><span class="ticker-name">BTC</span><span class="ticker-val">84,210</span><span class="ticker-chg dn">-1.87%</span></span>
-      <span class="ticker-item"><span class="ticker-name">WTI</span><span class="ticker-val">68.44</span><span class="ticker-chg dn">-0.62%</span></span>
-      <span class="ticker-item"><span class="ticker-name">US10Y</span><span class="ticker-val">4.31%</span><span class="ticker-chg up">+2bp</span></span>
-      <span class="ticker-item"><span class="ticker-name">USDCNH</span><span class="ticker-val">7.2841</span><span class="ticker-chg dn">-0.12%</span></span>
+      <span class="ticker-item"><span class="tn">SPX</span><span class="tv">5,224.62</span><span class="tc up">+0.86%</span></span>
+      <span class="ticker-item"><span class="tn">NDX</span><span class="tv">18,339.44</span><span class="tc up">+1.22%</span></span>
+      <span class="ticker-item"><span class="tn">HSI</span><span class="tv">20,187.31</span><span class="tc dn">-0.43%</span></span>
+      <span class="ticker-item"><span class="tn">USD/JPY</span><span class="tv">149.82</span><span class="tc up">+0.31%</span></span>
+      <span class="ticker-item"><span class="tn">GOLD</span><span class="tv">3,047.50</span><span class="tc up">+0.54%</span></span>
+      <span class="ticker-item"><span class="tn">BTC</span><span class="tv">84,210</span><span class="tc dn">-1.87%</span></span>
+      <span class="ticker-item"><span class="tn">WTI</span><span class="tv">68.44</span><span class="tc dn">-0.62%</span></span>
+      <span class="ticker-item"><span class="tn">US10Y</span><span class="tv">4.31%</span><span class="tc up">+2bp</span></span>
+      <span class="ticker-item"><span class="tn">JP10Y</span><span class="tv">1.52%</span><span class="tc up">+3bp</span></span>
+      <span class="ticker-item"><span class="tn">USD/CNH</span><span class="tv">7.2841</span><span class="tc dn">-0.12%</span></span>
+      <span class="ticker-item"><span class="tn">SPX</span><span class="tv">5,224.62</span><span class="tc up">+0.86%</span></span>
+      <span class="ticker-item"><span class="tn">NDX</span><span class="tv">18,339.44</span><span class="tc up">+1.22%</span></span>
+      <span class="ticker-item"><span class="tn">HSI</span><span class="tv">20,187.31</span><span class="tc dn">-0.43%</span></span>
+      <span class="ticker-item"><span class="tn">USD/JPY</span><span class="tv">149.82</span><span class="tc up">+0.31%</span></span>
+      <span class="ticker-item"><span class="tn">GOLD</span><span class="tv">3,047.50</span><span class="tc up">+0.54%</span></span>
+      <span class="ticker-item"><span class="tn">BTC</span><span class="tv">84,210</span><span class="tc dn">-1.87%</span></span>
+      <span class="ticker-item"><span class="tn">WTI</span><span class="tv">68.44</span><span class="tc dn">-0.62%</span></span>
+      <span class="ticker-item"><span class="tn">US10Y</span><span class="tv">4.31%</span><span class="tc up">+2bp</span></span>
+      <span class="ticker-item"><span class="tn">JP10Y</span><span class="tv">1.52%</span><span class="tc up">+3bp</span></span>
+      <span class="ticker-item"><span class="tn">USD/CNH</span><span class="tv">7.2841</span><span class="tc dn">-0.12%</span></span>
     </div>
   </div>
 </div>
@@ -281,33 +214,33 @@ footer { position:relative; z-index:1; background:var(--ink2); color:rgba(255,25
 <nav>
   <a class="logo" href="#">
     <div class="logo-mark">F</div>
-    <div><span class="logo-text">FinAI Hub</span><span class="logo-sub">金融 AI 工具导航</span></div>
+    <div><span class="logo-text">FinAI Hub</span><span class="logo-sub">投资研究工作流导航</span></div>
   </a>
-  <div class="nav-right">
-    <div class="nav-search">
-      <span style="color:var(--muted2);font-size:15px">⌕</span>
-      <input type="text" id="searchInput" placeholder="搜索工具名称、功能..." oninput="onSearch(this.value)">
-    </div>
-    <button class="submit-btn" onclick="showToast('📬 收录申请通道即将开放')">提交收录</button>
+  <div class="nav-tabs">
+    <button class="nav-tab active">研究工作流</button>
+    <button class="nav-tab" onclick="showToast('🛠️ 工具库即将上线')">工具库</button>
+    <button class="nav-tab" onclick="showToast('📄 研报资料库即将上线')">研报资料</button>
+    <button class="nav-tab" onclick="showToast('📅 财经日历即将上线')">财经日历</button>
   </div>
+  <div><button class="submit-btn" onclick="showToast('📬 收录申请即将开放')">提交资源</button></div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-badge">✦ FINANCIAL AI INTELLIGENCE HUB</div>
-      <h1 class="hero-title">专业投资者的<br><span class="gold">AI 工具全景</span></h1>
-      <p class="hero-desc">精选全球金融 AI 工具，覆盖港美股分析、量化策略、宏观研究、智能选股等核心场景，为专业投资者节省寻找工具的时间。</p>
+      <div class="hero-badge">✦ INVESTMENT RESEARCH WORKFLOW</div>
+      <h1 class="hero-title">按研究场景找工具<br><span class="gold">不再到处乱找网站</span></h1>
+      <p class="hero-desc">每个场景整理完整研究步骤和对应工具直链，从美国流动性到日本BOJ，从港美股选股到期权流向，打开即用。</p>
       <div class="hero-ctas">
-        <button class="cta-primary" onclick="document.querySelector('.main').scrollIntoView({behavior:'smooth'})">探索工具库</button>
-        <button class="cta-secondary" onclick="showToast('📄 研报资料库即将上线')">查看研报资料 →</button>
+        <button class="cta-p" onclick="document.querySelector('.main').scrollIntoView({behavior:'smooth'})">选择研究场景</button>
+        <button class="cta-s" onclick="showToast('🛠️ 工具库视图即将上线')">查看工具库 →</button>
       </div>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="hero-stat-num" id="statCount">—</span><div class="hero-stat-label">收录工具</div></div>
-      <div class="hero-stat"><span class="hero-stat-num">2,400+</span><div class="hero-stat-label">精选研报</div></div>
-      <div class="hero-stat"><span class="hero-stat-num">28k</span><div class="hero-stat-label">月活用户</div></div>
+      <div class="hstat"><span class="hstat-n">6</span><div class="hstat-l">研究场景</div></div>
+      <div class="hstat"><span class="hstat-n">80+</span><div class="hstat-l">直链资源</div></div>
+      <div class="hstat"><span class="hstat-n">33+</span><div class="hstat-l">收录工具</div></div>
     </div>
   </div>
 </div>
@@ -315,633 +248,346 @@ footer { position:relative; z-index:1; background:var(--ink2); color:rgba(255,25
 <!-- MAIN -->
 <div class="main">
   <div class="content">
-    <!-- TOOLBAR -->
-    <div class="toolbar">
-      <div class="cat-tabs" id="catTabs">
-        <button class="cat-tab active" data-cat="all">⚡ 全部</button>
-        <button class="cat-tab" data-cat="分析">📊 智能分析</button>
-        <button class="cat-tab" data-cat="选股">🎯 AI选股</button>
-        <button class="cat-tab" data-cat="量化">🤖 量化策略</button>
-        <button class="cat-tab" data-cat="宏观">🌐 宏观研究</button>
-        <button class="cat-tab" data-cat="新闻">📰 新闻聚合</button>
-        <button class="cat-tab" data-cat="数据">🗄️ 数据平台</button>
-        <button class="cat-tab" data-cat="港美股">🇭🇰 港美股</button>
-      </div>
-      <select class="sort-select" id="sortSelect" onchange="renderTools()">
-        <option value="rating">按评分排序</option>
-        <option value="newest">最新收录</option>
-        <option value="name">按名称</option>
-      </select>
+    <div class="scenario-tabs" id="scenarioTabs">
+      <button class="stab active" data-s="us-liquidity" onclick="switchScenario(this)"><span class="s-icon">💧</span><span class="s-label">美国流动性</span><span class="s-count">4步</span></button>
+      <button class="stab" data-s="japan-boj" onclick="switchScenario(this)"><span class="s-icon">🇯🇵</span><span class="s-label">日本BOJ/日元</span><span class="s-count">4步</span></button>
+      <button class="stab" data-s="hk-us-stock" onclick="switchScenario(this)"><span class="s-icon">📈</span><span class="s-label">港美股个股研究</span><span class="s-count">5步</span></button>
+      <button class="stab" data-s="a-share" onclick="switchScenario(this)"><span class="s-icon">🇨🇳</span><span class="s-label">A股行情/选股</span><span class="s-count">4步</span></button>
+      <button class="stab" data-s="quant" onclick="switchScenario(this)"><span class="s-icon">⚙️</span><span class="s-label">量化策略/回测</span><span class="s-count">4步</span></button>
+      <button class="stab" data-s="options" onclick="switchScenario(this)"><span class="s-icon">🐋</span><span class="s-label">期权流向/机构动向</span><span class="s-count">3步</span></button>
     </div>
-
-    <div class="filter-row" id="filterRow">
-      <button class="filter-chip active" data-price="all" onclick="setFilter(this,'price')">全部定价</button>
-      <button class="filter-chip" data-price="free" onclick="setFilter(this,'price')">免费</button>
-      <button class="filter-chip" data-price="freemium" onclick="setFilter(this,'price')">Freemium</button>
-      <button class="filter-chip" data-price="paid" onclick="setFilter(this,'price')">付费</button>
-      <span style="width:1px;background:var(--border);margin:0 4px;align-self:stretch;display:inline-block"></span>
-      <button class="filter-chip active" data-mkt="all" onclick="setFilter(this,'mkt')">全部市场</button>
-      <button class="filter-chip" data-mkt="美股" onclick="setFilter(this,'mkt')">美股</button>
-      <button class="filter-chip" data-mkt="港股" onclick="setFilter(this,'mkt')">港股</button>
-      <button class="filter-chip" data-mkt="A股" onclick="setFilter(this,'mkt')">A股</button>
-      <button class="filter-chip" data-mkt="加密" onclick="setFilter(this,'mkt')">加密</button>
-    </div>
-
-    <div class="results-bar">
-      <div class="results-count">共 <span id="resultCount">0</span> 个工具</div>
-      <div class="view-toggle">
-        <button class="view-btn active" id="gridBtn" onclick="setView('grid')" title="网格视图">⊞</button>
-        <button class="view-btn" id="listBtn" onclick="setView('list')" title="列表视图">☰</button>
-      </div>
-    </div>
-
-    <div class="tools-grid" id="toolsGrid"></div>
-    <div class="pagination" id="pagination"></div>
+    <div id="scenarioPanels"></div>
   </div>
 
-  <!-- SIDEBAR -->
   <div class="sidebar">
-    <div class="sidebar-card">
-      <div class="sidebar-head"><span class="dot"></span> 评分 TOP 5</div>
-      <div class="rank-list" id="rankList"></div>
-    </div>
-
-    <div class="sidebar-card">
-      <div class="sidebar-head"><span class="dot" style="background:var(--teal)"></span> 市场速览</div>
+    <div class="sc">
+      <div class="sc-head"><span class="dot"></span>市场速览</div>
       <div class="brief-list">
-        <div class="brief-row"><span class="brief-label">SPX</span><div style="text-align:right"><div class="brief-val">5,224.62</div><div class="brief-chg up">+0.86%</div></div></div>
-        <div class="brief-divider"></div>
-        <div class="brief-row"><span class="brief-label">HSI</span><div style="text-align:right"><div class="brief-val">20,187.31</div><div class="brief-chg dn">-0.43%</div></div></div>
-        <div class="brief-divider"></div>
-        <div class="brief-row"><span class="brief-label">USD/JPY</span><div style="text-align:right"><div class="brief-val">149.82</div><div class="brief-chg up">+0.31%</div></div></div>
-        <div class="brief-divider"></div>
-        <div class="brief-row"><span class="brief-label">GOLD</span><div style="text-align:right"><div class="brief-val">3,047.50</div><div class="brief-chg up">+0.54%</div></div></div>
-        <div class="brief-divider"></div>
-        <div class="brief-row"><span class="brief-label">BTC</span><div style="text-align:right"><div class="brief-val">84,210</div><div class="brief-chg dn">-1.87%</div></div></div>
+        <div class="brief-row"><span class="bl">SPX</span><div style="text-align:right"><div class="bv">5,224.62</div><div class="bc up">+0.86%</div></div></div>
+        <div class="bdiv"></div>
+        <div class="brief-row"><span class="bl">NDX</span><div style="text-align:right"><div class="bv">18,339.44</div><div class="bc up">+1.22%</div></div></div>
+        <div class="bdiv"></div>
+        <div class="brief-row"><span class="bl">HSI</span><div style="text-align:right"><div class="bv">20,187.31</div><div class="bc dn">-0.43%</div></div></div>
+        <div class="bdiv"></div>
+        <div class="brief-row"><span class="bl">USD/JPY</span><div style="text-align:right"><div class="bv">149.82</div><div class="bc up">+0.31%</div></div></div>
+        <div class="bdiv"></div>
+        <div class="brief-row"><span class="bl">JP10Y</span><div style="text-align:right"><div class="bv">1.52%</div><div class="bc up">+3bp</div></div></div>
+        <div class="bdiv"></div>
+        <div class="brief-row"><span class="bl">GOLD</span><div style="text-align:right"><div class="bv">3,047.50</div><div class="bc up">+0.54%</div></div></div>
+        <div class="bdiv"></div>
+        <div class="brief-row"><span class="bl">BTC</span><div style="text-align:right"><div class="bv">84,210</div><div class="bc dn">-1.87%</div></div></div>
       </div>
     </div>
-
+    <div class="sc">
+      <div class="sc-head"><span class="dot" style="background:var(--teal)"></span>常用直链</div>
+      <div class="qlinks">
+        <div class="qlink-group">
+          <div class="qlink-label">流动性监控</div>
+          <a class="qlink" href="https://sc.macromicro.me/charts/80362/mei-guo-shi-chang-jing-liu-dong-xing" target="_blank"><span class="qlink-icon">💧</span><span class="qlink-text">美国市场净流动性</span><span class="qlink-arrow">↗</span></a>
+          <a class="qlink" href="https://fred.stlouisfed.org/graph/?g=YWuuW" target="_blank"><span class="qlink-icon">🏦</span><span class="qlink-text">Fed净流动性(FRED)</span><span class="qlink-arrow">↗</span></a>
+        </div>
+        <div class="qlink-group">
+          <div class="qlink-label">日本宏观</div>
+          <a class="qlink" href="https://www.boj.or.jp/en/mopo/decisions/index.htm" target="_blank"><span class="qlink-icon">🇯🇵</span><span class="qlink-text">BOJ政策决议</span><span class="qlink-arrow">↗</span></a>
+          <a class="qlink" href="https://sc.macromicro.me/charts/1260/japan-10-year-bond-yield" target="_blank"><span class="qlink-icon">📊</span><span class="qlink-text">日本10年债收益率</span><span class="qlink-arrow">↗</span></a>
+        </div>
+        <div class="qlink-group">
+          <div class="qlink-label">港美股研究</div>
+          <a class="qlink" href="https://finchat.io" target="_blank"><span class="qlink-icon">💬</span><span class="qlink-text">Finchat AI财报问答</span><span class="qlink-arrow">↗</span></a>
+          <a class="qlink" href="https://unusualwhales.com" target="_blank"><span class="qlink-icon">🐋</span><span class="qlink-text">期权异动追踪</span><span class="qlink-arrow">↗</span></a>
+        </div>
+      </div>
+    </div>
     <div class="newsletter">
-      <h3>📬 每周工具精选</h3>
-      <p>每周五发送最新金融AI工具测评与精选研报，专为港美股投资者定制。</p>
+      <h3>📬 每周工作流更新</h3>
+      <p>每周五更新研究场景工作流和最新直链，专为港美股投资者定制。</p>
       <input class="nl-input" type="email" placeholder="your@email.com">
-      <button class="nl-btn" onclick="showToast('✅ 订阅成功！感谢关注')">订阅周报</button>
-    </div>
-
-    <div class="sidebar-card">
-      <div class="sidebar-head"><span class="dot" style="background:var(--green)"></span> 热门标签</div>
-      <div class="hot-tags">
-        <span class="hot-tag" onclick="setSearchAndRender('BOJ')">BOJ政策</span>
-        <span class="hot-tag" onclick="setSearchAndRender('宏观')">宏观研究</span>
-        <span class="hot-tag" onclick="setSearchAndRender('量化')">量化策略</span>
-        <span class="hot-tag" onclick="setSearchAndRender('港股')">港股</span>
-        <span class="hot-tag" onclick="setSearchAndRender('选股')">AI选股</span>
-        <span class="hot-tag" onclick="setSearchAndRender('财报')">财报分析</span>
-        <span class="hot-tag" onclick="setSearchAndRender('期权')">期权流向</span>
-        <span class="hot-tag" onclick="setSearchAndRender('数据')">数据平台</span>
-      </div>
+      <button class="nl-btn" onclick="showToast('✅ 订阅成功！')">订阅周报</button>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-brand">
-    <div class="footer-logo">FinAI Hub</div>
-    <p>专为专业投资者打造的 AI 工具导航，覆盖港美股、宏观、量化等核心场景。</p>
+  <div><div class="fl">FinAI Hub</div><p>专为专业投资者打造的研究工作流导航，覆盖港美股、宏观、量化等核心场景。</p></div>
+  <div class="flg">
+    <div class="fc"><h4>场景</h4><a>美国流动性</a><a>日本BOJ/日元</a><a>港美股研究</a><a>A股选股</a></div>
+    <div class="fc"><h4>资源</h4><a>工具库</a><a>研报资料</a><a>财经日历</a><a>学习资源</a></div>
+    <div class="fc"><h4>关于</h4><a>关于我们</a><a>广告合作</a><a>提交资源</a><a>友链交换</a></div>
   </div>
-  <div class="footer-links-grid">
-    <div class="footer-col">
-      <h4>TOOLS</h4>
-      <a>智能分析</a><a>AI选股</a><a>量化策略</a><a>宏观研究</a>
-    </div>
-    <div class="footer-col">
-      <h4>RESOURCES</h4>
-      <a>精选研报</a><a>财经日历</a><a>数据平台</a><a>学习资源</a>
-    </div>
-    <div class="footer-col">
-      <h4>ABOUT</h4>
-      <a>关于我们</a><a>广告合作</a><a>提交收录</a><a>友链交换</a>
-    </div>
-  </div>
-  <div class="footer-copy">© 2026 FinAI Hub<br>每日更新 · 专业可信</div>
+  <div class="fcopy">© 2026 FinAI Hub<br>每日更新 · 专业可信</div>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="modal" style="display:none" onclick="closeModal(event)">
-  <div class="modal" id="modalBody"></div>
-</div>
-
 <script>
-// ─── DATA ────────────────────────────────────────────────────────────────────
-const TOOLS = [
-  { id:1, name:"Bloomberg Terminal AI", desc:"彭博终端内置 AI 功能，整合实时数据与历史研究，自然语言查询财务数据、分析师预测和市场新闻，是机构投资者标配。", icon:"📊", iconBg:"linear-gradient(135deg,#e8f4ee,#d0e8d8)", category:"分析", tags:["智能分析","机构级"], pricing:"paid", rating:4.9, users:"2.1M 用户", url:"https://bloomberg.com/professional", featured:true, markets:["美股","港股","全球"], addedAt:"2026-01-01" },
-  { id:2, name:"Perplexity Finance", desc:"实时搜索+AI总结，快速找到最新财报、新闻、分析师报告并给出摘要，带引用来源，适合研究辅助和快速了解个股动态。", icon:"🔍", iconBg:"linear-gradient(135deg,#fef5e4,#fde8c0)", category:"分析", tags:["AI搜索","实时资讯"], pricing:"free", rating:4.6, users:"28M 月访问", url:"https://perplexity.ai", featured:true, markets:["全球"], addedAt:"2026-01-05" },
-  { id:3, name:"Finviz AI Screener", desc:"AI 增强的股票筛选器，支持自然语言输入条件，自动转化为技术面+基本面过滤器，热图和可视化一流。", icon:"🎯", iconBg:"linear-gradient(135deg,#eef2ff,#dde4ff)", category:"选股", tags:["AI选股","技术分析"], pricing:"paid", rating:4.7, users:"8.5M 月访问", url:"https://finviz.com", featured:false, markets:["美股"], addedAt:"2026-01-10" },
-  { id:4, name:"QuantConnect AI", desc:"AI 辅助策略生成，用自然语言描述交易逻辑，自动生成 Python 回测代码，支持 US/HK/Crypto 多市场。", icon:"🤖", iconBg:"linear-gradient(135deg,#e8f8f5,#c8f0e8)", category:"量化", tags:["量化策略","回测"], pricing:"freemium", rating:4.5, users:"320K 用户", url:"https://quantconnect.com", featured:false, markets:["美股","港股","加密"], addedAt:"2026-01-15" },
-  { id:5, name:"MacroAxis AI", desc:"AI 驱动的宏观经济分析平台，覆盖全球央行政策、通胀预测、汇率模型，支持日债/日元等宏观议题深度分析。", icon:"🌐", iconBg:"linear-gradient(135deg,#fff5e6,#ffe8c2)", category:"宏观", tags:["宏观研究","汇率"], pricing:"free", rating:4.3, users:"180K 月访问", url:"https://macroaxis.com", featured:false, markets:["全球"], addedAt:"2026-01-20" },
-  { id:6, name:"富途 AI 研究助手", desc:"富途牛牛内置 AI 功能，支持财报解读、个股分析、行情问答，中文支持友好，港美股数据实时覆盖。", icon:"📈", iconBg:"linear-gradient(135deg,#fdeef5,#facce0)", category:"港美股", tags:["港美股","中文友好"], pricing:"free", rating:4.4, users:"港美股首选", url:"https://futubull.com", featured:true, markets:["美股","港股"], addedAt:"2026-01-22" },
-  { id:7, name:"Alphasense", desc:"机构级 AI 搜索引擎，专为投资研究设计，实时分析财报、新闻、研报的情绪倾向，自动提炼关键信息。", icon:"📰", iconBg:"linear-gradient(135deg,#e8f4ee,#c8e8d4)", category:"新闻", tags:["机构级","情绪分析"], pricing:"paid", rating:4.8, users:"机构用户为主", url:"https://alpha-sense.com", featured:false, markets:["全球"], addedAt:"2026-02-01" },
-  { id:8, name:"TradingView AI", desc:"全球最大图表平台内置 AI 功能，支持自然语言生成 Pine Script 策略，智能识别K线形态，社区策略共享。", icon:"📉", iconBg:"linear-gradient(135deg,#e8f0ff,#c8d4ff)", category:"分析", tags:["图表分析","策略生成"], pricing:"freemium", rating:4.8, users:"50M 月访问", url:"https://tradingview.com", featured:true, markets:["美股","港股","加密","外汇"], addedAt:"2026-02-05" },
-  { id:9, name:"Kensho AI (S&P Global)", desc:"标普全球旗下AI分析平台，专注事件驱动分析，量化历史上同类事件对市场的影响，机构研究必备。", icon:"🏛️", iconBg:"linear-gradient(135deg,#fff0e8,#ffd8b8)", category:"分析", tags:["事件驱动","机构级"], pricing:"paid", rating:4.7, users:"机构用户", url:"https://kensho.com", featured:false, markets:["全球"], addedAt:"2026-02-10" },
-  { id:10, name:"雪球 AI 助手", desc:"雪球平台内置 AI 功能，聚合A股/港股社区讨论情绪，AI解读财报要点，适合关注A股和港股的中文投资者。", icon:"❄️", iconBg:"linear-gradient(135deg,#e8f4ff,#c8dcff)", category:"港美股", tags:["A股","港股","情绪分析"], pricing:"free", rating:4.2, users:"国内A股首选", url:"https://xueqiu.com", featured:false, markets:["A股","港股"], addedAt:"2026-02-15" },
-  { id:11, name:"Snowflake Cortex AI", desc:"数据仓库+AI能力结合，支持自然语言查询金融数据集，适合有技术能力的量化研究员构建自定义数据管道。", icon:"🗄️", iconBg:"linear-gradient(135deg,#f0f4ff,#dce4ff)", category:"数据", tags:["数据平台","企业级"], pricing:"paid", rating:4.4, users:"企业级", url:"https://snowflake.com", featured:false, markets:["全球"], addedAt:"2026-02-20" },
-  { id:12, name:"Koyfin AI", desc:"面向散户和专业人士的 Bloomberg 替代品，AI 辅助财务分析，支持全球股票、ETF、宏观数据，价格仅为彭博的1/10。", icon:"💹", iconBg:"linear-gradient(135deg,#e8fff4,#c0f0d8)", category:"分析", tags:["Bloomberg替代","全球股票"], pricing:"freemium", rating:4.6, users:"120K 用户", url:"https://koyfin.com", featured:true, markets:["美股","港股","全球"], addedAt:"2026-03-01" },
-  { id:13, name:"Unusual Whales", desc:"期权异动追踪平台，AI 标记机构级大单和异常流向，追踪国会议员持仓，散户跟单热门工具。", icon:"🐋", iconBg:"linear-gradient(135deg,#f0e8ff,#dcc8ff)", category:"选股", tags:["期权流向","机构追踪"], pricing:"paid", rating:4.5, users:"280K 用户", url:"https://unusualwhales.com", featured:false, markets:["美股"], addedAt:"2026-03-05" },
-  { id:14, name:"Wisesheets AI", desc:"Google Sheets / Excel 插件，AI 直接拉取股票数据、财报、估值，让 Excel 变成个人Bloomberg终端。", icon:"📋", iconBg:"linear-gradient(135deg,#f0fff0,#d0f0d0)", category:"数据", tags:["Excel插件","数据拉取"], pricing:"paid", rating:4.3, users:"85K 用户", url:"https://wisesheets.io", featured:false, markets:["美股","全球"], addedAt:"2026-03-10" },
-  { id:15, name:"Earnings Whispers AI", desc:"专注财报季的 AI 工具，预测财报预期差（EPS Beat/Miss 概率），财报日历+历史反应数据可视化。", icon:"📅", iconBg:"linear-gradient(135deg,#fff8e0,#ffecc0)", category:"分析", tags:["财报分析","预期差"], pricing:"freemium", rating:4.4, users:"1.2M 月访问", url:"https://earningswhispers.com", featured:false, markets:["美股"], addedAt:"2026-03-12" },
-  ,
-  {
-    id: 16,
-    name: "华尔街见闻",
-    desc: "国内顶级财经资讯平台，AI 驱动的实时新闻聚合与深度解读，覆盖宏观、A股、港美股，内置 AI 助手可对话问答市场动态。",
-    icon: "📰",
-    iconBg: "linear-gradient(135deg,#fff0e8,#ffd8b8)",
-    category: "新闻",
-    tags: ["财经资讯", "中文"],
-    pricing: "freemium",
-    rating: 4.5,
-    users: "千万级用户",
-    url: "https://wallstreetcn.com",
-    featured: true,
-    markets: ["A股", "港股", "美股", "全球"],
-    addedAt: "2026-03-20"
+const SCENARIOS = {
+  'us-liquidity':{
+    icon:'💧',title:'美国市场流动性分析',
+    desc:'美联储资产负债表、TGA账户、逆回购余额是判断市场流动性松紧的核心指标，直接影响SPX未来2周走势。',
+    badges:['每周跟踪','宏观必看','影响A股/港股'],
+    steps:[
+      {n:1,title:'看美国净流动性总量',sub:'净流动性 = 美联储资产负债表 − TGA账户 − 逆回购余额',tags:[{c:'st-key',t:'核心指标'},{c:'st-freq',t:'每周看'}],
+       res:[
+         {p:'MacroMicro',i:'美国市场净流动性',d:'已算好的净流动性综合图，直接看趋势方向，上升=市场钱多=利好股市',l:'https://sc.macromicro.me/charts/80362/mei-guo-shi-chang-jing-liu-dong-xing',lt:'打开图表'},
+         {p:'gurufocus',i:'流动性与S&P500叠加图',d:'流动性与SPX的历史相关性对比，验证当前流动性对指数的驱动',l:'https://www.gurufocus.com/market/fed-net-liquidity-sp500',lt:'打开图表'},
+       ],
+       tip:'净流动性领先SPX约2周。持续上升时SPX通常跟涨；快速下降时要警惕回调。'},
+      {n:2,title:'分解三个子指标的变化',sub:'分别看美联储负债表、TGA账户、逆回购，判断流动性变化的来源',tags:[{c:'st-freq',t:'每周看'}],
+       res:[
+         {p:'MacroMicro',i:'美联储资产负债表',d:'QT缩表进度追踪，资产负债表规模下降=抽水',l:'https://sc.macromicro.me/charts/1244/us-fed-assets-nqdp',lt:'打开图表'},
+         {p:'MacroMicro',i:'财政部账户余额TGA',d:'TGA增加=财政部从市场吸走流动性；TGA减少=财政部放水',l:'https://sc.macromicro.me/charts/34339/us-treasury-general-account',lt:'打开图表'},
+         {p:'MacroMicro',i:'美联储隔夜逆回购ON RRP',d:'ON RRP下降=钱从美联储流向市场=利好；目前已基本清零',l:'https://sc.macromicro.me/series/40593/us-fed-onrrp-rate',lt:'打开图表'},
+         {p:'FRED',i:'Fed净流动性原始数据',d:'美联储官方数据源，可下载历史数据做量化研究',l:'https://fred.stlouisfed.org/graph/?g=YWuuW',lt:'打开FRED'},
+       ],
+       tip:'当前最重要变量是TGA：债务上限谈判解决后，TGA会大量发债补仓，短期抽走市场流动性。'},
+      {n:3,title:'看S&P500 EPS验证基本面',sub:'流动性驱动行情的前提是EPS不大幅下降',tags:[{c:'st-freq',t:'每季度看'},{c:'st-opt',t:'辅助验证'}],
+       res:[
+         {p:'MacroMicro',i:'S&P500各行业EPS',d:'11个行业EPS表现，看哪个行业在拖累或支撑整体盈利',l:'https://en.macromicro.me/collections/4393/sp500-eps-collection/35720/sp500-eps',lt:'打开图表'},
+         {p:'Earnings Whispers',i:'财报季EPS预期差',d:'当季财报Beat/Miss率，判断市场盈利预期是否过高',l:'https://earningswhispers.com',lt:'打开网站'},
+       ],
+       tip:'流动性好+EPS增长=牛市；流动性好但EPS下降=流动性驱动行情脆弱，容易急跌。'},
+      {n:4,title:'期货持仓验证资金方向',sub:'机构资金是否在用实际仓位配合流动性方向',tags:[{c:'st-opt',t:'可选'}],optional:true,
+       res:[
+         {p:'CME',i:'S&P500期货成交量和未平仓合约',d:'未平仓合约和成交量同时大幅增加=有大量新资金入场，是非常强的信号',l:'https://www.cmegroup.com/markets/equities/sp-e-mini-sandp500.volume.html',lt:'打开CME'},
+       ],
+       tip:'流动性和期货持仓同向时信号最强。这个指标更偏短线交易参考。'},
+    ]
   },
-  {
-    id: 17,
-    name: "Yahoo Finance",
-    desc: "全球访问量最大的免费财经平台，覆盖股价、财报、新闻、分析师评级，近期推出 AI 摘要功能，数据全面是研究起点首选。",
-    icon: "📈",
-    iconBg: "linear-gradient(135deg,#e8f0ff,#c8d4ff)",
-    category: "数据",
-    tags: ["免费数据", "全球股票"],
-    pricing: "free",
-    rating: 4.4,
-    users: "100M+ 月访问",
-    url: "https://finance.yahoo.com",
-    featured: true,
-    markets: ["美股", "港股", "全球"],
-    addedAt: "2026-03-20"
+  'japan-boj':{
+    icon:'🇯🇵',title:'日本BOJ政策与日元分析',
+    desc:'2026年春斗结果已出炉，BOJ政策正常化路径成为全球最重要宏观议题之一。日元走势影响套利交易和全球风险偏好。',
+    badges:['2026核心宏观主题','影响全球套利交易','港美股相关性高'],
+    steps:[
+      {n:1,title:'跟踪BOJ政策决议和官员表态',sub:'直接看BOJ官方声明，不要依赖二手解读',tags:[{c:'st-key',t:'核心信源'},{c:'st-freq',t:'每次会议后看'}],
+       res:[
+         {p:'BOJ官网',i:'货币政策决议声明',d:'每次利率决议后第一时间发布，最权威的一手信源',l:'https://www.boj.or.jp/en/mopo/decisions/index.htm',lt:'打开BOJ'},
+         {p:'Bloomberg',i:'BOJ新闻和分析',d:'Bloomberg对BOJ决议的即时报道和解读，英文一手资讯',l:'https://www.bloomberg.com/topics/bank-of-japan',lt:'打开Bloomberg'},
+         {p:'华尔街见闻',i:'BOJ中文深度分析',d:'BOJ政策的中文深度解读，省去翻译时间，质量有保证',l:'https://wallstreetcn.com',lt:'打开华尔街见闻'},
+       ],
+       tip:'2026年BOJ关键词：春斗工资数据、实质工资转正、缩表进度、YCC彻底退出。每次会议前看野村/大摩的日本经济师预测。'},
+      {n:2,title:'监控春斗工资和通胀数据',sub:'工资增速是BOJ加息的核心条件，春斗结果直接决定政策节奏',tags:[{c:'st-key',t:'加息核心条件'},{c:'st-freq',t:'月度看'}],
+       res:[
+         {p:'MacroMicro',i:'日本CPI通胀率',d:'追踪日本通胀趋势，核心CPI是否持续高于2%目标',l:'https://sc.macromicro.me/charts/278/jp-cpi-yoy',lt:'打开图表'},
+         {p:'MacroMicro',i:'日本实质工资增速',d:'实质工资需转正BOJ才有加息底气，是2026年最关键指标',l:'https://sc.macromicro.me/charts/2155/jp-average-monthly-earnings-yoy',lt:'打开图表'},
+         {p:'FRED',i:'日本CPI历史数据',d:'下载日本通胀历史数据做量化研究或对比分析',l:'https://fred.stlouisfed.org/series/JPNCPIALLMINMEI',lt:'打开FRED'},
+       ],
+       tip:'2026年春斗名义工资涨幅约5.4%，但实质工资能否转正取决于通胀能否同步回落，这是BOJ最大的两难。'},
+      {n:3,title:'追踪日元汇率和日债走势',sub:'汇率和债券是BOJ政策的市场反应窗口',tags:[{c:'st-freq',t:'每日看'}],
+       res:[
+         {p:'TradingView',i:'USD/JPY日线图',d:'日元走势技术分析，150是当前关键心理关口',l:'https://tradingview.com/chart/?symbol=USDJPY',lt:'打开图表'},
+         {p:'MacroMicro',i:'日本10年国债收益率',d:'日债收益率上升=BOJ加息预期增强=日元升值压力减少',l:'https://sc.macromicro.me/charts/1260/japan-10-year-bond-yield',lt:'打开图表'},
+         {p:'MacroMicro',i:'日美利差与日元相关性',d:'利差收窄=套息交易平仓压力=日元升值=全球风险资产承压',l:'https://sc.macromicro.me/charts/6972/us-japan-10-year-bond-spread',lt:'打开图表'},
+       ],
+       tip:'日元快速升值（如USDJPY从152快速跌到140）会触发全球套利交易平仓，对港美股有显著负面冲击。2024年8月已有先例。'},
+      {n:4,title:'看日本股市与汇率联动',sub:'日元升值通常压制出口股，但BOJ加息也反映经济向好',tags:[{c:'st-opt',t:'可选'}],optional:true,
+       res:[
+         {p:'MacroMicro',i:'日经225走势图',d:'历史上日元升值压制日经225，但近期相关性有所变化',l:'https://sc.macromicro.me/charts/2699/jp-nikkei-225-index',lt:'打开图表'},
+         {p:'Koyfin',i:'日本ETF对比EWJ/DXJ',d:'对冲汇率的DXJ vs不对冲的EWJ，判断参与日本股市的策略',l:'https://koyfin.com',lt:'打开Koyfin'},
+       ],
+       tip:'DXJ对冲了日元风险，日元升值时DXJ跑输EWJ。如果看好日本经济同时担心日元升值，DXJ是更好的工具。'},
+    ]
   },
-  {
-    id: 18,
-    name: "Substack Finance",
-    desc: "顶级投资人和分析师聚集的付费通讯平台，订阅 Druckenmiller、Ackman 团队等大佬的独立研究，是获取一手思路的重要渠道。",
-    icon: "✉️",
-    iconBg: "linear-gradient(135deg,#fef5e4,#fde8c0)",
-    category: "新闻",
-    tags: ["投资通讯", "独立研究"],
-    pricing: "freemium",
-    rating: 4.6,
-    users: "主流机构必读",
-    url: "https://substack.com",
-    featured: false,
-    markets: ["全球", "美股"],
-    addedAt: "2026-03-20"
+  'hk-us-stock':{
+    icon:'📈',title:'港美股个股深度研究',
+    desc:'从了解一家公司到建立完整研究观点，需要多个工具配合使用。以下是最高效的研究步骤。',
+    badges:['个股研究','港股+美股','AI辅助'],
+    steps:[
+      {n:1,title:'快速了解公司基本情况',sub:'5分钟建立对一家公司的基础认知',tags:[{c:'st-key',t:'研究起点'}],
+       res:[
+         {p:'Perplexity',i:'搜索公司名+"business model"',d:'用AI搜索快速了解公司业务、竞争格局、近期重大事件',l:'https://perplexity.ai',lt:'打开Perplexity'},
+         {p:'Finchat.io',i:'AI财报问答',d:'直接问"NVDA最近3年毛利率趋势"、"TSM资本支出变化"等，秒出图表',l:'https://finchat.io',lt:'打开Finchat'},
+         {p:'Simply Wall St',i:'雪花图基本面健康度',d:'可视化方式快速判断公司估值、财务健康度是否值得深研',l:'https://simplywall.st',lt:'打开SWS'},
+       ],
+       tip:'第一步目标：搞清楚这家公司靠什么赚钱、谁是竞争对手、最近有什么变化。不需要看财报原文。'},
+      {n:2,title:'深入财务数据分析',sub:'核查收入增速、利润率、现金流、估值倍数',tags:[{c:'st-freq',t:'每季财报后'}],
+       res:[
+         {p:'Koyfin',i:'财务数据+估值仪表盘',d:'历史财务数据、估值倍数、分析师预测，Bloomberg平替首选',l:'https://koyfin.com',lt:'打开Koyfin'},
+         {p:'Stock Analysis',i:'免费美股财务数据',d:'免费查美股财务报表、EPS历史、内部人交易，数据清晰',l:'https://stockanalysis.com',lt:'打开SA'},
+         {p:'富途牛牛',i:'港股财务数据和研究',d:'港股财报数据最佳中文平台，中文财报解读+分析师预测',l:'https://futubull.com',lt:'打开富途'},
+       ],
+       tip:'重点关注：收入增速是否放缓、自由现金流是否为正、估值PE/PS是否高于历史均值。'},
+      {n:3,title:'看分析师研究和市场观点',sub:'了解市场共识在哪里，找到预期差',tags:[{c:'st-freq',t:'研究前必看'}],
+       res:[
+         {p:'Seeking Alpha',i:'多空观点汇总',d:'散户分析师的多空文章，找到市场共识之外的异见观点',l:'https://seekingalpha.com',lt:'打开SA'},
+         {p:'Alphasense',i:'机构研报情绪分析',d:'机构研报AI摘要和情绪倾向，判断卖方共识方向',l:'https://alpha-sense.com',lt:'打开Alphasense'},
+         {p:'Substack',i:'顶级投资人独立研究',d:'订阅大佬的深度研究通讯，获取主流之外的独立观点',l:'https://substack.com',lt:'打开Substack'},
+       ],
+       tip:'预期差是获利的来源：如果市场共识是悲观的，你看到了积极变化，才有超额收益的空间。'},
+      {n:4,title:'技术分析确认买卖点',sub:'基本面研究完毕后，用技术面找合适的进出点',tags:[{c:'st-opt',t:'执行层'}],optional:true,
+       res:[
+         {p:'TradingView',i:'K线图+技术指标',d:'支撑阻力位、均线系统、成交量配合，找低风险入场机会',l:'https://tradingview.com',lt:'打开TradingView'},
+         {p:'Finviz',i:'美股技术形态筛选',d:'用AI筛选处于特定技术形态的股票，配合基本面研究',l:'https://finviz.com',lt:'打开Finviz'},
+       ],
+       tip:'基本面给你买什么，技术面告诉你什么时候买。两者缺一都会影响胜率。'},
+      {n:5,title:'关注财报日历和催化剂',sub:'财报前后是最重要的交易时机',tags:[{c:'st-key',t:'时机把握'}],
+       res:[
+         {p:'Earnings Whispers',i:'财报预期差分析',d:'历史财报后涨跌幅、当前EPS预期高低，判断财报博弈策略',l:'https://earningswhispers.com',lt:'打开EW'},
+         {p:'Unusual Whales',i:'财报前期权异动',d:'财报前大单期权是买看涨还是看跌，判断机构的预判方向',l:'https://unusualwhales.com',lt:'打开UW'},
+       ],
+       tip:'财报前买期权做方向的风险是隐含波动率溢价，财报后期权价值会骤降（IV Crush）。'},
+    ]
   },
-  {
-    id: 19,
-    name: "金十数据",
-    desc: "专注A股和港股的量化数据平台，提供财务因子、行情数据、研报数据接口，支持 Python/Excel 调用，量化研究者常用底层数据源。",
-    icon: "🗄️",
-    iconBg: "linear-gradient(135deg,#e8fff4,#c0f0d8)",
-    category: "数据",
-    tags: ["量化数据", "API接口"],
-    pricing: "paid",
-    rating: 4.4,
-    users: "量化研究首选",
-    url: "https://www.jin10.com/",
-    featured: false,
-    markets: ["A股", "港股"],
-    addedAt: "2026-03-20"
+  'a-share':{
+    icon:'🇨🇳',title:'A股行情分析与选股',
+    desc:'A股行情受资金面、政策面、北向资金影响显著，以下是高效的A股研究工作流。',
+    badges:['A股专属','中文工具','国内可访问'],
+    steps:[
+      {n:1,title:'每日行情和板块轮动',sub:'开盘前/收盘后快速掌握市场全貌',tags:[{c:'st-key',t:'每日必看'}],
+       res:[
+         {p:'华尔街见闻',i:'A股早报/晚报',d:'最高质量的中文A股日报，覆盖宏观+板块+个股，开盘前必读',l:'https://wallstreetcn.com',lt:'打开华尔街见闻'},
+         {p:'同花顺AI',i:'板块热点和涨跌排行',d:'实时板块资金流向、AI热点识别、涨停板梳理',l:'https://www.10jqka.com.cn',lt:'打开同花顺'},
+         {p:'雪球',i:'市场情绪和大V观点',d:'高质量投资者社区，看知名大V的最新研判和持仓变化',l:'https://xueqiu.com',lt:'打开雪球'},
+       ],
+       tip:'A股行情短期主要由情绪和资金驱动，看盘时关注北向资金净买入、两融余额变化是关键。'},
+      {n:2,title:'政策面和宏观环境判断',sub:'A股受政策影响极大，政策底通常先于市场底出现',tags:[{c:'st-key',t:'核心驱动'},{c:'st-freq',t:'每周看'}],
+       res:[
+         {p:'MacroMicro',i:'PMI和经济景气指数',d:'制造业/服务业PMI趋势，判断经济周期位置',l:'https://sc.macromicro.me/charts/1/cn-pmi-combined',lt:'打开图表'},
+         {p:'MacroMicro',i:'社融和信贷数据',d:'社融超预期=流动性宽松=利好A股，是最重要的领先指标',l:'https://sc.macromicro.me/charts/15235/cn-social-financing',lt:'打开图表'},
+         {p:'华尔街见闻',i:'政策新闻追踪',d:'政治局会议、央行操作、财政政策的第一时间中文解读',l:'https://wallstreetcn.com',lt:'打开华尔街见闻'},
+       ],
+       tip:'2026年A股核心矛盾：经济弱复苏但政策持续支撑，资产荒背景下优质A股配置价值凸显。'},
+      {n:3,title:'个股基本面筛选',sub:'用量化方式筛选出符合条件的A股标的',tags:[{c:'st-freq',t:'每月做一次'}],
+       res:[
+         {p:'万得Wind',i:'全量A股财务筛选',d:'机构级数据，设定ROE/营收增速/估值等条件精准筛选',l:'https://www.wind.com.cn',lt:'打开Wind'},
+         {p:'金石数据',i:'A股因子数据API',d:'量化因子数据，支持Python调用，适合自建选股模型',l:'https://www.jisilu.cn',lt:'打开金石'},
+         {p:'同花顺AI',i:'智能选股和诊股',d:'中小散户快速选股工具，AI自动分析个股技术+基本面',l:'https://www.10jqka.com.cn',lt:'打开同花顺'},
+       ],
+       tip:'A股选股要特别注意"业绩-股价"背离：很多A股业绩好但股价不涨，需要判断催化剂是什么。'},
+      {n:4,title:'北向资金和机构持仓跟踪',sub:'跟踪聪明钱的动向作为辅助信号',tags:[{c:'st-opt',t:'辅助信号'}],optional:true,
+       res:[
+         {p:'东方财富',i:'北向资金实时追踪',d:'沪深港通北向资金净买入，是外资动向的直接指标',l:'https://data.eastmoney.com/hsgt/index.html',lt:'打开东财'},
+         {p:'万得Wind',i:'基金季报持仓数据',d:'每季度公募基金持仓变化，看机构在加仓还是减仓哪些股',l:'https://www.wind.com.cn',lt:'打开Wind'},
+       ],
+       tip:'北向资金是A股最有参考价值的资金指标，但短期噪音大，建议看5日/20日均值趋势而非单日数据。'},
+    ]
   },
-  {
-    id: 20,
-    name: "Seeking Alpha",
-    desc: "全球最大的股票研究社区，AI 辅助筛选分析师文章，量化评级系统覆盖 5000+ 股票，付费版含华尔街研报摘要对比。",
-    icon: "🔬",
-    iconBg: "linear-gradient(135deg,#f0e8ff,#dcc8ff)",
-    category: "分析",
-    tags: ["股票研究", "社区驱动"],
-    pricing: "freemium",
-    rating: 4.5,
-    users: "30M 月访问",
-    url: "https://seekingalpha.com",
-    featured: true,
-    markets: ["美股", "ETF"],
-    addedAt: "2026-03-20"
+  'quant':{
+    icon:'⚙️',title:'量化策略开发与回测',
+    desc:'从策略想法到回测验证，再到实盘执行，每个环节都需要不同的工具支撑。',
+    badges:['程序员友好','多市场覆盖','Python/API'],
+    steps:[
+      {n:1,title:'获取高质量历史数据',sub:'数据质量决定回测结果的可靠性',tags:[{c:'st-key',t:'数据基础'}],
+       res:[
+         {p:'FRED',i:'美国宏观因子数据',d:'免费权威的宏观经济数据，可通过API批量下载，量化宏观策略必用',l:'https://fred.stlouisfed.org',lt:'打开FRED'},
+         {p:'Yahoo Finance',i:'yfinance Python库',d:'免费获取美股/港股历史价格和财务数据，pip install yfinance即用',l:'https://finance.yahoo.com',lt:'打开Yahoo Finance'},
+         {p:'金石数据',i:'A股/港股量化数据',d:'A股港股因子数据API，质量高，适合做中国市场量化策略',l:'https://www.jisilu.cn',lt:'打开金石'},
+         {p:'Wisesheets',i:'Excel/Sheets数据接口',d:'不写代码也能把股票财务数据自动拉进Excel，快速验证想法',l:'https://wisesheets.io',lt:'打开Wisesheets'},
+       ],
+       tip:'数据坑：免费数据常有缺漏和错误，重要策略一定要用付费数据源交叉验证，避免回测结果虚高。'},
+      {n:2,title:'AI辅助策略代码生成',sub:'用AI把交易逻辑快速转化为可回测的代码',tags:[{c:'st-key',t:'效率工具'}],
+       res:[
+         {p:'QuantConnect AI',i:'自然语言生成策略代码',d:'描述策略逻辑，AI自动生成Python回测代码，支持美股港股加密',l:'https://quantconnect.com',lt:'打开QuantConnect'},
+         {p:'TradingView',i:'Pine Script AI生成',d:'用自然语言描述技术策略，AI生成Pine Script并实时回测',l:'https://tradingview.com',lt:'打开TradingView'},
+         {p:'Cursor',i:'AI代码编辑器',d:'写量化代码用Cursor，理解整个代码库，重构和debug效率极高',l:'https://cursor.com',lt:'打开Cursor'},
+       ],
+       tip:'AI生成的代码一定要理解再用，很多策略有幸存者偏差或未来函数问题，需要手动检查。'},
+      {n:3,title:'因子研究和策略验证',sub:'验证因子在不同市场、不同时期的稳健性',tags:[{c:'st-freq',t:'策略开发阶段'}],
+       res:[
+         {p:'QuantConnect',i:'多市场回测框架',d:'支持美股港股加密的系统级回测，处理滑点/手续费/资金曲线',l:'https://quantconnect.com',lt:'打开QuantConnect'},
+         {p:'Koyfin',i:'因子对比可视化',d:'可视化不同因子的历史表现，快速判断因子衰减情况',l:'https://koyfin.com',lt:'打开Koyfin'},
+         {p:'Snowflake Cortex AI',i:'大规模数据查询',d:'用自然语言查询大规模金融数据集，适合有技术能力的团队',l:'https://snowflake.com',lt:'打开Snowflake'},
+       ],
+       tip:'好策略的标准：样本外表现接近样本内，最大回撤可接受，不过度拟合。夏普比率>1是基本门槛。'},
+      {n:4,title:'实盘监控和风控',sub:'策略上线后的日常监控',tags:[{c:'st-opt',t:'实盘阶段'}],optional:true,
+       res:[
+         {p:'TradingView',i:'实盘警报系统',d:'设置价格、指标、形态警报，策略触发条件成立时即时通知',l:'https://tradingview.com',lt:'打开TradingView'},
+         {p:'Unusual Whales',i:'期权异动交叉验证',d:'量化信号触发时，用期权流向数据交叉验证机构是否同向',l:'https://unusualwhales.com',lt:'打开UW'},
+       ],
+       tip:'实盘和回测的最大差距来自滑点和流动性。小市值股票的回测结果往往比实盘乐观，要打折扣。'},
+    ]
   },
-  {
-    id: 21,
-    name: "同花顺 AI",
-    desc: "国内老牌行情软件全面接入 AI，支持财报智能解读、个股诊断、板块热点分析，中文语境理解强，A股散户和机构均广泛使用。",
-    icon: "🌸",
-    iconBg: "linear-gradient(135deg,#fdeef5,#facce0)",
-    category: "港美股",
-    tags: ["A股", "智能诊股"],
-    pricing: "freemium",
-    rating: 4.2,
-    users: "国内A股主流",
-    url: "https://www.10jqka.com.cn",
-    featured: false,
-    markets: ["A股", "港股"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 22,
-    name: "Simply Wall St",
-    desc: "用可视化雪花图呈现股票基本面健康度，AI 自动生成公司分析叙述，适合快速判断一只股票值不值得深入研究，覆盖全球市场。",
-    icon: "❄️",
-    iconBg: "linear-gradient(135deg,#e8f4ff,#c8dcff)",
-    category: "分析",
-    tags: ["可视化分析", "基本面"],
-    pricing: "freemium",
-    rating: 4.4,
-    users: "4M+ 用户",
-    url: "https://simplywall.st",
-    featured: false,
-    markets: ["美股", "港股", "全球"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 23,
-    name: "Macro Micro 财经M平方",
-    desc: "台湾团队打造的宏观研究神器，上百张全球宏观图表实时更新，覆盖美联储、通胀、就业、信贷周期，中文界面，免费内容极丰富。",
-    icon: "🌏",
-    iconBg: "linear-gradient(135deg,#fff5e6,#ffe8c2)",
-    category: "宏观",
-    tags: ["宏观图表", "中文"],
-    pricing: "freemium",
-    rating: 4.7,
-    users: "宏观研究必备",
-    url: "https://sc.macromicro.me",
-    featured: true,
-    markets: ["全球", "美股", "港股"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 24,
-    name: "Stock Analysis",
-    desc: "干净简洁的免费财务数据平台，财报、估值、股息、内部人交易一页呈现，近期加入 AI 摘要功能，Bloomberg 免费替代首选之一。",
-    icon: "📋",
-    iconBg: "linear-gradient(135deg,#f0fff0,#d0f0d0)",
-    category: "分析",
-    tags: ["财务数据", "免费"],
-    pricing: "free",
-    rating: 4.5,
-    users: "10M+ 月访问",
-    url: "https://stockanalysis.com",
-    featured: false,
-    markets: ["美股", "ETF"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 25,
-    name: "FRED (美联储数据库)",
-    desc: "美联储旗下免费宏观经济数据库，覆盖80万+经济指标，利率、通胀、就业、GDP 应有尽有，是宏观研究的最权威原始数据来源。",
-    icon: "🏦",
-    iconBg: "linear-gradient(135deg,#e8f4ee,#d0e8d8)",
-    category: "数据",
-    tags: ["宏观数据", "权威免费"],
-    pricing: "free",
-    rating: 4.8,
-    users: "机构必用",
-    url: "https://fred.stlouisfed.org",
-    featured: true,
-    markets: ["全球", "美股"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 26,
-    name: "Betashares / ETF Database",
-    desc: "全球 ETF 筛选和对比平台，AI 辅助按主题/费率/流动性筛选最优ETF，覆盖美股、港股、商品、债券，配置组合必备工具。",
-    icon: "🧺",
-    iconBg: "linear-gradient(135deg,#eef2ff,#dde4ff)",
-    category: "选股",
-    tags: ["ETF筛选", "资产配置"],
-    pricing: "free",
-    rating: 4.3,
-    users: "ETF投资者首选",
-    url: "https://etfdb.com",
-    featured: false,
-    markets: ["美股", "全球"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 27,
-    name: "万得 Wind 金融终端",
-    desc: "国内最权威的机构级金融数据终端，覆盖A股、港股、债券、基金全品类，近期上线 AI 问答功能，是国内卖方和买方机构标配。",
-    icon: "🌀",
-    iconBg: "linear-gradient(135deg,#fff8e0,#ffecc0)",
-    category: "数据",
-    tags: ["机构级", "A股数据"],
-    pricing: "paid",
-    rating: 4.8,
-    users: "国内机构标配",
-    url: "https://www.wind.com.cn",
-    featured: true,
-    markets: ["A股", "港股", "债券"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 28,
-    name: "The Generalist",
-    desc: "专注科技与成长股的顶级 Substack 通讯，深度分析 AI/SaaS/消费科技公司商业模式，是美股科技投资者的必读独立研究来源。",
-    icon: "📝",
-    iconBg: "linear-gradient(135deg,#f0e8ff,#dcc8ff)",
-    category: "新闻",
-    tags: ["科技股", "独立研究"],
-    pricing: "freemium",
-    rating: 4.6,
-    users: "科技投资必读",
-    url: "https://www.generalist.com",
-    featured: false,
-    markets: ["美股", "全球"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 29,
-    name: "Statista Finance",
-    desc: "全球最大统计数据平台的金融板块，AI 辅助生成图表和报告，覆盖行业市场规模、消费数据、竞争格局，做行业研究必备。",
-    icon: "📊",
-    iconBg: "linear-gradient(135deg,#e8f0ff,#c8d4ff)",
-    category: "数据",
-    tags: ["行业数据", "图表"],
-    pricing: "paid",
-    rating: 4.3,
-    users: "行业研究首选",
-    url: "https://statista.com",
-    featured: false,
-    markets: ["全球"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 30,
-    name: "老虎证券 AI 助手",
-    desc: "老虎证券内置 AI 功能，支持港美股实时行情问答、持仓分析、财报速读，中文友好，适合新加坡及东南亚华人投资者使用。",
-    icon: "🐯",
-    iconBg: "linear-gradient(135deg,#fff5e6,#ffe8c2)",
-    category: "港美股",
-    tags: ["港美股", "东南亚"],
-    pricing: "free",
-    rating: 4.3,
-    users: "东南亚华人首选",
-    url: "https://www.tigersecurities.com",
-    featured: false,
-    markets: ["美股", "港股"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 31,
-    name: "彭博社 Bloomberg News",
-    desc: "全球顶级财经媒体，免费文章+付费订阅结合，AI 摘要快速提炼长文核心观点，是获取英文一手市场信息的最权威渠道之一。",
-    icon: "🗞️",
-    iconBg: "linear-gradient(135deg,#e8f4ee,#c8e8d4)",
-    category: "新闻",
-    tags: ["权威媒体", "英文"],
-    pricing: "freemium",
-    rating: 4.7,
-    users: "机构必读",
-    url: "https://bloomberg.com",
-    featured: false,
-    markets: ["全球"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 32,
-    name: "Finchat.io",
-    desc: "专为股票投资打造的 AI 对话工具，内置上市公司财报数据库，可直接问「NVDA 最近三年毛利率趋势」并生成图表，效率极高。",
-    icon: "💬",
-    iconBg: "linear-gradient(135deg,#e8fff4,#c0f0d8)",
-    category: "分析",
-    tags: ["AI对话", "财报数据"],
-    pricing: "freemium",
-    rating: 4.6,
-    users: "120K 用户",
-    url: "https://finchat.io",
-    featured: true,
-    markets: ["美股", "港股", "全球"],
-    addedAt: "2026-03-20"
-  },
-  {
-    id: 33,
-    name: "富途牛牛 Moomoo",
-    desc: "富途面向海外市场的版本，英文界面+中文可切换，港美股数据实时，内置 AI 研究助手，适合新加坡用户首选交易+研究一体平台。",
-    icon: "🐄",
-    iconBg: "linear-gradient(135deg,#fdeef5,#facce0)",
-    category: "港美股",
-    tags: ["港美股", "新加坡"],
-    pricing: "free",
-    rating: 4.5,
-    users: "新加坡用户首选",
-    url: "https://www.moomoo.com",
-    featured: true,
-    markets: ["美股", "港股"],
-    addedAt: "2026-03-20"
+  'options':{
+    icon:'🐋',title:'期权流向与机构动向追踪',
+    desc:'通过期权异动和机构持仓数据，判断主力资金的真实方向，作为交易方向的辅助确认信号。',
+    badges:['美股专属','方向辅助信号','13F持仓追踪'],
+    steps:[
+      {n:1,title:'追踪期权异常大单',sub:'机构级资金通常用期权做方向性押注，异常大单是早期信号',tags:[{c:'st-key',t:'核心工具'},{c:'st-freq',t:'每日看'}],
+       res:[
+         {p:'Unusual Whales',i:'全市场期权异动流',d:'AI过滤噪音，标记出真正异常的大单：高保费、短到期、大单量',l:'https://unusualwhales.com',lt:'打开UW'},
+         {p:'Unusual Whales',i:'国会议员持仓追踪',d:'追踪美国国会议员最新买卖，历史胜率很高的跟单信息来源',l:'https://unusualwhales.com/politicians',lt:'打开政客持仓'},
+         {p:'Finviz',i:'个股期权隐含波动率',d:'查看特定股票的IV Rank，判断期权价格是便宜还是昂贵',l:'https://finviz.com',lt:'打开Finviz'},
+       ],
+       tip:'判断期权流向质量：到期日越近+价外程度越大+保费越高，信号越有意义。纯粹的对冲单（有现货持仓对应）意义不大。'},
+      {n:2,title:'追踪13F机构持仓',sub:'每季度公布的13F文件揭示对冲基金的真实持仓',tags:[{c:'st-freq',t:'每季度看'}],
+       res:[
+         {p:'Dataroma',i:'超级投资者13F持仓',d:'追踪Berkshire、Druckenmiller、Ackman、Tepper、Burry等大佬持仓变化',l:'https://www.dataroma.com/m/home.php',lt:'打开Dataroma'},
+         {p:'SEC EDGAR',i:'13F原始文件',d:'直接从SEC查最新机构持仓原始文件，最权威来源',l:'https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=13F',lt:'打开SEC'},
+         {p:'Koyfin',i:'13F持仓变化可视化',d:'可视化机构季度持仓变化，一眼看出加仓/减仓的股票',l:'https://koyfin.com',lt:'打开Koyfin'},
+       ],
+       tip:'13F有45天滞后期，只能看方向趋势，不能直接跟单。结合期权流向可以判断持仓是否仍在延续。'},
+      {n:3,title:'期权定价和策略选择',sub:'确认方向后，选择合适的期权结构来表达观点',tags:[{c:'st-opt',t:'进阶使用'}],optional:true,
+       res:[
+         {p:'TradingView',i:'期权链和希腊字母',d:'查看各个行权价的Delta/Gamma/Theta，辅助选择合适的期权合约',l:'https://tradingview.com',lt:'打开TradingView'},
+         {p:'Earnings Whispers',i:'财报期权隐含涨跌幅',d:'市场隐含的财报涨跌幅预期，判断做Straddle是否划算',l:'https://earningswhispers.com',lt:'打开EW'},
+       ],
+       tip:'初学者建议只用期权流向作为方向辅助信号，不直接买卖期权。期权的时间价值损耗和IV变化非常容易让方向对了但仍然亏钱。'},
+    ]
   }
-];
+};
 
-// ─── STATE ───────────────────────────────────────────────────────────────────
-let state = { cat:'all', search:'', price:'all', mkt:'all', sort:'rating', view:'grid', page:1 };
-const PER_PAGE = 8;
+let openSteps={}, currentKey='us-liquidity';
 
-// ─── FILTER + SORT ────────────────────────────────────────────────────────────
-function getFiltered() {
-  let arr = [...TOOLS];
-  if (state.cat !== 'all') arr = arr.filter(t => t.category === state.cat);
-  if (state.price !== 'all') arr = arr.filter(t => t.pricing === state.price);
-  if (state.mkt !== 'all') arr = arr.filter(t => t.markets.includes(state.mkt));
-  if (state.search) {
-    const q = state.search.toLowerCase();
-    arr = arr.filter(t =>
-      t.name.toLowerCase().includes(q) ||
-      t.desc.toLowerCase().includes(q) ||
-      t.tags.some(tg => tg.toLowerCase().includes(q)) ||
-      t.category.toLowerCase().includes(q) ||
-      t.markets.some(m => m.toLowerCase().includes(q))
-    );
-  }
-  if (state.sort === 'rating') arr.sort((a,b) => b.rating - a.rating);
-  else if (state.sort === 'newest') arr.sort((a,b) => new Date(b.addedAt) - new Date(a.addedAt));
-  else if (state.sort === 'name') arr.sort((a,b) => a.name.localeCompare(b.name));
-  return arr;
-}
-
-// ─── RENDER ───────────────────────────────────────────────────────────────────
-function pricingTag(p) {
-  if (p==='free') return `<span class="tag tag-free">免费</span>`;
-  if (p==='paid') return `<span class="tag tag-paid">付费</span>`;
-  return `<span class="tag tag-freemium">Freemium</span>`;
-}
-function stars(r) {
-  const full = Math.floor(r), half = r%1>=0.5;
-  return '★'.repeat(full) + (half?'½':'') + '☆'.repeat(5-full-(half?1:0));
-}
-
-function renderTools() {
-  const filtered = getFiltered();
-  const total = filtered.length;
-  const totalPages = Math.ceil(total / PER_PAGE);
-  if (state.page > totalPages) state.page = 1;
-  const paged = filtered.slice((state.page-1)*PER_PAGE, state.page*PER_PAGE);
-
-  document.getElementById('resultCount').textContent = total;
-  const grid = document.getElementById('toolsGrid');
-  grid.className = 'tools-grid' + (state.view==='list' ? ' list-view' : '');
-
-  if (paged.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><div class="emoji">🔍</div><h3>没有找到匹配的工具</h3><p>试试调整筛选条件或搜索关键词</p></div>`;
-    document.getElementById('pagination').innerHTML = '';
-    return;
-  }
-
-  grid.innerHTML = paged.map((t, i) => `
-    <a class="tool-card${t.featured?' featured':''}" style="animation-delay:${i*0.05}s"
-       href="#" onclick="openModal(${t.id}); return false;">
-      <div class="tool-top">
-        <div class="tool-icon" style="background:${t.iconBg}">${t.icon}</div>
-        <div class="tool-meta">
-          <div class="tool-name">${t.name}</div>
-          <div class="tool-tags">
-            <span class="tag tag-cat">${t.category}</span>
-            ${pricingTag(t.pricing)}
-            ${t.tags.slice(0,1).map(tg=>`<span class="tag tag-mkt">${tg}</span>`).join('')}
-          </div>
+function renderScenario(key){
+  const s=SCENARIOS[key];
+  const stepsHTML=s.steps.map((step,idx)=>{
+    const isOpen=openSteps[key+idx]!==false;
+    const rows=step.res.map(r=>`
+      <tr>
+        <td><span class="res-platform">${r.p}</span></td>
+        <td><span class="res-indicator">${r.i}</span></td>
+        <td><span class="res-desc">${r.d}</span></td>
+        <td><a class="res-link" href="${r.l}" target="_blank">${r.lt} ↗</a></td>
+      </tr>`).join('');
+    return `
+    <div class="step${step.optional?' optional':''}${isOpen?' open':''}" id="st-${key}-${idx}">
+      <div class="step-header" onclick="toggleStep('${key}',${idx})">
+        <div class="step-num">${step.n}</div>
+        <div class="step-title-wrap">
+          <div class="step-title">${step.title}</div>
+          <div class="step-subtitle">${step.sub}</div>
+          <div class="step-tags">${step.tags.map(t=>`<span class="step-tag ${t.c}">${t.t}</span>`).join('')}</div>
+        </div>
+        <span class="step-toggle">▼</span>
+      </div>
+      <div class="step-body">
+        <table class="res-table">
+          <thead><tr><th>平台</th><th>指标/功能</th><th>作用说明</th><th>直链</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        ${step.tip?`<div class="tip-box"><span class="tip-icon">💡</span><div class="tip-text"><strong>使用提示：</strong>${step.tip}</div></div>`:''}
+      </div>
+    </div>`; }).join('');
+  document.getElementById('scenarioPanels').innerHTML=`
+    <div class="scenario-panel">
+      <div class="scenario-header">
+        <div class="sh-icon">${s.icon}</div>
+        <div class="sh-body">
+          <div class="sh-title">${s.title}</div>
+          <div class="sh-desc">${s.desc}</div>
+          <div class="sh-meta">${s.badges.map((b,i)=>`<span class="sh-badge${i===0?' gold':''}">${b}</span>`).join('')}</div>
         </div>
       </div>
-      <div class="tool-body">
-        <div class="tool-desc">${t.desc}</div>
-        <div class="tool-footer">
-          <div class="tool-rating">${stars(t.rating)} <span>${t.rating}</span></div>
-          <div class="tool-users">${t.users}</div>
-          <span class="tool-btn">查看详情 →</span>
-        </div>
-      </div>
-    </a>
-  `).join('');
+      <div class="steps-container">${stepsHTML}</div>
+    </div>`;}
 
-  // pagination
-  const pg = document.getElementById('pagination');
-  if (totalPages <= 1) { pg.innerHTML=''; return; }
-  let html = `<button class="page-btn" onclick="goPage(${state.page-1})" ${state.page===1?'disabled':''}>‹</button>`;
-  for (let i=1;i<=totalPages;i++) {
-    html += `<button class="page-btn${i===state.page?' active':''}" onclick="goPage(${i})">${i}</button>`;
-  }
-  html += `<button class="page-btn" onclick="goPage(${state.page+1})" ${state.page===totalPages?'disabled':''}>›</button>`;
-  pg.innerHTML = html;
-}
+function toggleStep(key,idx){
+  const el=document.getElementById(`st-${key}-${idx}`);
+  const open=el.classList.contains('open');
+  openSteps[key+idx]=!open;
+  el.classList.toggle('open',!open);}
 
-function renderRanking() {
-  const top5 = [...TOOLS].sort((a,b)=>b.rating-a.rating).slice(0,5);
-  const cls = ['g','s','b','o','o'];
-  document.getElementById('rankList').innerHTML = top5.map((t,i)=>`
-    <div class="rank-row" onclick="openModal(${t.id})">
-      <div class="rank-n ${cls[i]}">${i+1}</div>
-      <div class="rank-ico" style="background:${t.iconBg}">${t.icon}</div>
-      <div class="rank-info"><div class="rank-name">${t.name}</div><div class="rank-cat">${t.category}</div></div>
-      <div class="rank-score up">★${t.rating}</div>
-    </div>
-  `).join('');
-}
-
-// ─── MODAL ────────────────────────────────────────────────────────────────────
-function openModal(id) {
-  const t = TOOLS.find(x=>x.id===id);
-  if (!t) return;
-  const pricingLabel = {free:'免费',paid:'付费',freemium:'免费+付费版'};
-  document.getElementById('modalBody').innerHTML = `
-    <button class="modal-close" onclick="document.getElementById('modal').style.display='none'">✕</button>
-    <div class="modal-icon" style="background:${t.iconBg}">${t.icon}</div>
-    <div class="modal-name">${t.name}</div>
-    <div class="modal-tags">
-      <span class="tag tag-cat">${t.category}</span>
-      ${pricingTag(t.pricing)}
-      ${t.tags.map(tg=>`<span class="tag tag-mkt">${tg}</span>`).join('')}
-    </div>
-    <div class="modal-desc">${t.desc}</div>
-    <div class="modal-meta">
-      <div class="meta-item"><div class="meta-label">用户评分</div><div class="meta-val" style="color:var(--gold)">★ ${t.rating} / 5.0</div></div>
-      <div class="meta-item"><div class="meta-label">定价模式</div><div class="meta-val">${pricingLabel[t.pricing]}</div></div>
-      <div class="meta-item"><div class="meta-label">用户规模</div><div class="meta-val">${t.users}</div></div>
-      <div class="meta-item"><div class="meta-label">收录时间</div><div class="meta-val">${t.addedAt}</div></div>
-    </div>
-    <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-family:'IBM Plex Mono',monospace">覆盖市场</div>
-    <div class="modal-markets">${t.markets.map(m=>`<span class="market-tag">${m}</span>`).join('')}</div>
-    <div class="modal-cta">
-      <a class="modal-visit" href="${t.url}" target="_blank" onclick="showToast('🔗 正在跳转...')">前往使用 →</a>
-      <button class="modal-save" onclick="showToast('⭐ 已收藏到书签')">收藏</button>
-    </div>
-  `;
-  document.getElementById('modal').style.display = 'flex';
-}
-function closeModal(e) {
-  if (e.target.id==='modal') document.getElementById('modal').style.display='none';
-}
-document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('modal').style.display='none'; });
-
-// ─── CONTROLS ─────────────────────────────────────────────────────────────────
-document.getElementById('catTabs').addEventListener('click', e => {
-  const btn = e.target.closest('.cat-tab');
-  if (!btn) return;
-  document.querySelectorAll('.cat-tab').forEach(b=>b.classList.remove('active'));
+function switchScenario(btn){
+  document.querySelectorAll('.stab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  state.cat = btn.dataset.cat;
-  state.page = 1;
-  renderTools();
-});
+  currentKey=btn.dataset.s;
+  openSteps={};
+  renderScenario(currentKey);}
 
-function setFilter(el, type) {
-  const val = type==='price' ? el.dataset.price : el.dataset.mkt;
-  document.querySelectorAll(`[data-${type}]`).forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-  if (type==='price') state.price = val;
-  else state.mkt = val;
-  state.page = 1;
-  renderTools();
-}
-
-function onSearch(val) {
-  state.search = val;
-  state.page = 1;
-  renderTools();
-}
-
-function setSearchAndRender(keyword) {
-  state.search = keyword;
-  document.getElementById('searchInput').value = keyword;
-  document.querySelector('.main').scrollIntoView({behavior:'smooth'});
-  renderTools();
-}
-
-function setView(v) {
-  state.view = v;
-  document.getElementById('gridBtn').classList.toggle('active', v==='grid');
-  document.getElementById('listBtn').classList.toggle('active', v==='list');
-  renderTools();
-}
-
-function goPage(p) {
-  const total = Math.ceil(getFiltered().length / PER_PAGE);
-  if (p<1||p>total) return;
-  state.page = p;
-  renderTools();
-  document.querySelector('.main').scrollIntoView({behavior:'smooth'});
-}
-
-// ─── TOAST ────────────────────────────────────────────────────────────────────
-function showToast(msg) {
-  const existing = document.querySelector('.toast');
-  if (existing) existing.remove();
-  const t = document.createElement('div');
-  t.className = 'toast'; t.textContent = msg;
+function showToast(msg){
+  const ex=document.querySelector('.toast');if(ex)ex.remove();
+  const t=document.createElement('div');t.className='toast';t.textContent=msg;
   document.body.appendChild(t);
-  setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateY(8px)'; setTimeout(()=>t.remove(),300); }, 2500);
-}
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateY(8px)';t.style.transition='all 0.3s';setTimeout(()=>t.remove(),300);},2500);}
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
-document.getElementById('statCount').textContent = TOOLS.length + '+';
-renderTools();
-renderRanking();
+renderScenario(currentKey);
 </script>
 </body>
 </html>

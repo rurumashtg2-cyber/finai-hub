@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinAI Hub · 金融AI工具精选导航</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Noto+Serif+SC:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f0e8;
+  --bg2: #ede8dc;
+  --surface: #faf7f2;
+  --surface2: #f0ece2;
+  --border: #d9d0be;
+  --border-light: #e8e2d4;
+  --ink: #1a1a14;
+  --ink2: #2d2d22;
+  --muted: #7a7464;
+  --muted2: #a09880;
+  --green: #1a4a2e;
+  --green2: #2a6644;
+  --green-light: rgba(26,74,46,0.08);
+  --green-light2: rgba(26,74,46,0.14);
+  --gold: #c9922a;
+  --gold2: #e8aa3a;
+  --gold-light: rgba(201,146,42,0.1);
+  --red: #c0392b;
+  --red-light: rgba(192,57,43,0.08);
+  --teal: #1a6b6b;
+  --teal-light: rgba(26,107,107,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--ink); font-family:'Noto Sans SC',sans-serif; overflow-x:hidden; }
+body::before {
+  content:''; position:fixed; inset:0;
+  background-image: linear-gradient(rgba(26,74,46,0.025) 1px,transparent 1px), linear-gradient(90deg,rgba(26,74,46,0.025) 1px,transparent 1px);
+  background-size:40px 40px; pointer-events:none; z-index:0;
+}
+
+/* TICKER */
+.ticker-bar { position:relative; z-index:10; background:var(--green); color:rgba(255,255,255,0.85); font-family:'IBM Plex Mono',monospace; font-size:11.5px; padding:6px 0; overflow:hidden; border-bottom:2px solid var(--gold); }
+.ticker-track { display:flex; animation:tickerScroll 40s linear infinite; white-space:nowrap; width:max-content; }
+@keyframes tickerScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.ticker-item { display:inline-flex; align-items:center; gap:6px; padding:0 28px; border-right:1px solid rgba(255,255,255,0.15); }
+.ticker-name { color:rgba(255,255,255,0.55); }
+.ticker-val { color:#fff; font-weight:500; }
+.ticker-chg.up { color:#5ddd8a; }
+.ticker-chg.dn { color:#ff8070; }
+.ticker-label { position:absolute; left:0; top:0; bottom:0; background:var(--gold); color:var(--green); font-weight:500; padding:0 16px; display:flex; align-items:center; font-size:10px; letter-spacing:1.5px; z-index:2; }
+
+/* NAV */
+nav { position:sticky; top:0; z-index:100; background:var(--surface); border-bottom:1px solid var(--border); padding:0 48px; height:62px; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 20px rgba(26,74,46,0.06); }
+.logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.logo-mark { width:34px; height:34px; background:var(--green); border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:18px; color:var(--gold2); font-weight:800; }
+.logo-text { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--green); }
+.logo-sub { font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:2px; display:block; margin-top:-2px; }
+.nav-right { display:flex; align-items:center; gap:10px; }
+.nav-search { display:flex; align-items:center; gap:8px; background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:7px 14px; transition:all 0.2s; }
+.nav-search:focus-within { border-color:var(--green); box-shadow:0 0 0 3px rgba(26,74,46,0.08); }
+.nav-search input { border:none; background:transparent; font-size:13px; color:var(--ink); outline:none; width:200px; font-family:'Noto Sans SC',sans-serif; }
+.nav-search input::placeholder { color:var(--muted2); }
+.submit-btn { padding:8px 18px; border-radius:8px; background:var(--green); color:#fff; font-size:13px; border:none; cursor:pointer; font-family:'Noto Sans SC',sans-serif; font-weight:500; transition:all 0.2s; }
+.submit-btn:hover { background:var(--green2); box-shadow:0 4px 16px rgba(26,74,46,0.25); transform:translateY(-1px); }
+
+/* HERO */
+.hero { position:relative; z-index:1; background:linear-gradient(135deg,var(--green) 0%,#0f3320 100%); padding:64px 48px 56px; overflow:hidden; }
+.hero::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(201,146,42,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(201,146,42,0.06) 1px,transparent 1px); background-size:32px 32px; }
+.hero::after { content:''; position:absolute; right:-100px; top:-100px; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(201,146,42,0.12),transparent 70%); pointer-events:none; }
+.hero-inner { position:relative; z-index:1; max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center; }
+.hero-badge { display:inline-flex; align-items:center; gap:8px; padding:5px 14px; border:1px solid rgba(201,146,42,0.5); border-radius:4px; background:rgba(201,146,42,0.12); font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--gold2); letter-spacing:2px; margin-bottom:22px; }
+.hero-title { font-family:'Playfair Display',serif; font-size:clamp(32px,4vw,52px); font-weight:800; color:#fff; line-height:1.18; margin-bottom:16px; }
+.hero-title .gold { color:var(--gold2); }
+.hero-desc { color:rgba(255,255,255,0.6); font-size:15px; line-height:1.75; max-width:500px; margin-bottom:32px; font-weight:300; }
+.hero-ctas { display:flex; gap:12px; }
+.cta-primary { padding:11px 26px; background:var(--gold); color:var(--green); border:none; border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; }
+.cta-primary:hover { background:var(--gold2); box-shadow:0 6px 24px rgba(201,146,42,0.4); transform:translateY(-2px); }
+.cta-secondary { padding:11px 22px; background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.85); border:1px solid rgba(255,255,255,0.2); border-radius:8px; font-size:14px; cursor:pointer; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; }
+.cta-secondary:hover { background:rgba(255,255,255,0.16); }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.1); border-radius:12px; overflow:hidden; min-width:260px; }
+.hero-stat { background:rgba(0,0,0,0.2); padding:20px 18px; text-align:center; }
+.hero-stat-num { font-family:'Playfair Display',serif; font-size:26px; font-weight:700; color:var(--gold2); display:block; }
+.hero-stat-label { font-size:11px; color:rgba(255,255,255,0.5); margin-top:4px; }
+
+/* MAIN LAYOUT */
+.main { position:relative; z-index:1; max-width:1200px; margin:0 auto; padding:40px 40px; display:grid; grid-template-columns:1fr 290px; gap:32px; }
+
+/* TOOLBAR */
+.toolbar { display:flex; align-items:center; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+.cat-tabs { display:flex; gap:0; border:1px solid var(--border); border-radius:10px; background:var(--surface); padding:4px; overflow-x:auto; scrollbar-width:none; flex:1; }
+.cat-tabs::-webkit-scrollbar { display:none; }
+.cat-tab { flex-shrink:0; padding:7px 14px; border-radius:7px; border:none; background:transparent; color:var(--muted); cursor:pointer; font-size:13px; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; white-space:nowrap; }
+.cat-tab:hover { color:var(--green); background:var(--green-light); }
+.cat-tab.active { background:var(--green); color:#fff; font-weight:500; }
+
+.sort-select { padding:8px 14px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--ink); font-size:13px; font-family:'Noto Sans SC',sans-serif; cursor:pointer; outline:none; flex-shrink:0; }
+.sort-select:focus { border-color:var(--green); }
+
+.filter-row { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+.filter-chip { padding:5px 14px; border-radius:20px; border:1px solid var(--border); background:transparent; color:var(--muted); font-size:12px; cursor:pointer; transition:all 0.18s; font-family:'Noto Sans SC',sans-serif; }
+.filter-chip:hover { border-color:var(--green); color:var(--green); }
+.filter-chip.active { background:var(--green-light2); border-color:var(--green); color:var(--green); }
+
+/* RESULTS BAR */
+.results-bar { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.results-count { font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); }
+.results-count span { color:var(--green); font-weight:500; }
+.view-toggle { display:flex; gap:4px; }
+.view-btn { width:30px; height:30px; border-radius:6px; border:1px solid var(--border); background:transparent; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:14px; transition:all 0.15s; }
+.view-btn.active { background:var(--green-light2); border-color:var(--green); }
+
+/* TOOLS GRID */
+.tools-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+.tools-grid.list-view { grid-template-columns:1fr; }
+
+/* TOOL CARD */
+.tool-card {
+  background:var(--surface); border:1px solid var(--border-light); border-radius:12px; padding:18px;
+  cursor:pointer; transition:all 0.22s; text-decoration:none; color:inherit;
+  display:flex; flex-direction:column; position:relative; overflow:hidden;
+  animation:riseIn 0.4s ease both;
+}
+@keyframes riseIn { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:translateY(0)} }
+.tool-card:hover { border-color:rgba(26,74,46,0.3); box-shadow:0 6px 30px rgba(26,74,46,0.1); transform:translateY(-2px); }
+.tool-card.featured { border-color:rgba(201,146,42,0.3); background:linear-gradient(135deg,#faf7f2,#f5f0e0); }
+.tool-card.featured::after { content:'★ 精选'; position:absolute; top:0; right:0; background:var(--gold); color:var(--green); font-size:10px; font-weight:700; font-family:'IBM Plex Mono',monospace; padding:4px 10px; border-radius:0 12px 0 8px; letter-spacing:1px; }
+
+/* list view card */
+.tools-grid.list-view .tool-card { flex-direction:row; align-items:center; gap:16px; padding:14px 18px; }
+.tools-grid.list-view .tool-top { margin-bottom:0; flex-shrink:0; }
+.tools-grid.list-view .tool-body { flex:1; }
+.tools-grid.list-view .tool-desc { -webkit-line-clamp:1; margin-bottom:6px; }
+.tools-grid.list-view .tool-footer { padding-top:0; border-top:none; }
+
+.tool-top { display:flex; align-items:flex-start; gap:12px; margin-bottom:12px; }
+.tool-icon { width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+.tool-meta { flex:1; }
+.tool-name { font-size:15px; font-weight:700; color:var(--ink); margin-bottom:5px; font-family:'Noto Serif SC',serif; }
+.tool-tags { display:flex; gap:5px; flex-wrap:wrap; }
+.tag { font-size:10px; padding:2px 8px; border-radius:4px; font-family:'IBM Plex Mono',monospace; }
+.tag-cat { background:var(--green-light2); color:var(--green); border:1px solid rgba(26,74,46,0.15); }
+.tag-free { background:var(--teal-light); color:var(--teal); border:1px solid rgba(26,107,107,0.15); }
+.tag-paid { background:var(--gold-light); color:var(--gold); border:1px solid rgba(201,146,42,0.2); }
+.tag-freemium { background:rgba(100,100,200,0.08); color:#4a4aaa; border:1px solid rgba(100,100,200,0.15); }
+.tag-new { background:var(--red-light); color:var(--red); border:1px solid rgba(192,57,43,0.15); }
+.tag-mkt { background:rgba(26,74,46,0.06); color:var(--muted); border:1px solid var(--border-light); }
+.tool-desc { font-size:12.5px; color:var(--muted); line-height:1.65; margin-bottom:14px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.tool-footer { display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid var(--border-light); }
+.tool-rating { display:flex; align-items:center; gap:4px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--gold); }
+.tool-rating span { color:var(--muted2); }
+.tool-users { font-size:11px; color:var(--muted2); font-family:'IBM Plex Mono',monospace; }
+.tool-btn { padding:5px 14px; border-radius:6px; background:var(--green-light2); border:1px solid rgba(26,74,46,0.2); color:var(--green); font-size:12px; cursor:pointer; transition:all 0.2s; font-family:'Noto Sans SC',sans-serif; font-weight:500; text-decoration:none; }
+.tool-btn:hover { background:var(--green); color:#fff; }
+
+/* EMPTY STATE */
+.empty-state { grid-column:1/-1; text-align:center; padding:60px 20px; }
+.empty-state .emoji { font-size:48px; margin-bottom:16px; }
+.empty-state h3 { font-family:'Playfair Display',serif; font-size:20px; color:var(--ink); margin-bottom:8px; }
+.empty-state p { color:var(--muted); font-size:14px; }
+
+/* PAGINATION */
+.pagination { display:flex; justify-content:center; align-items:center; gap:8px; margin-top:28px; padding-bottom:10px; }
+.page-btn { width:36px; height:36px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--muted); cursor:pointer; font-size:13px; font-family:'IBM Plex Mono',monospace; transition:all 0.15s; display:flex; align-items:center; justify-content:center; }
+.page-btn:hover { border-color:var(--green); color:var(--green); }
+.page-btn.active { background:var(--green); color:#fff; border-color:var(--green); }
+.page-btn:disabled { opacity:0.4; cursor:not-allowed; }
+
+/* SIDEBAR */
+.sidebar { display:flex; flex-direction:column; gap:20px; }
+.sidebar-card { background:var(--surface); border:1px solid var(--border-light); border-radius:12px; overflow:hidden; }
+.sidebar-head { padding:14px 18px; border-bottom:1px solid var(--border-light); font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:8px; }
+.sidebar-head .dot { width:7px; height:7px; border-radius:50%; background:var(--gold); flex-shrink:0; }
+
+/* RANKING */
+.rank-list { padding:6px 0; }
+.rank-row { padding:9px 18px; display:flex; align-items:center; gap:10px; cursor:pointer; transition:background 0.15s; }
+.rank-row:hover { background:var(--bg2); }
+.rank-n { font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; width:18px; text-align:center; flex-shrink:0; }
+.rank-n.g{color:var(--gold)} .rank-n.s{color:#8a8a8a} .rank-n.b{color:#a0724a} .rank-n.o{color:var(--muted2);font-size:11px}
+.rank-ico { width:30px; height:30px; border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+.rank-info { flex:1; }
+.rank-name { font-size:13px; font-weight:600; color:var(--ink); }
+.rank-cat { font-size:11px; color:var(--muted2); margin-top:1px; }
+.rank-score { font-family:'IBM Plex Mono',monospace; font-size:11px; flex-shrink:0; }
+.up{color:#1a8a3a} .dn{color:var(--red)}
+
+/* MARKET */
+.brief-list { padding:12px 18px; display:flex; flex-direction:column; gap:9px; }
+.brief-row { display:flex; justify-content:space-between; align-items:center; }
+.brief-label { font-size:12px; color:var(--muted); font-family:'IBM Plex Mono',monospace; }
+.brief-val { font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; color:var(--ink); }
+.brief-chg { font-family:'IBM Plex Mono',monospace; font-size:11px; }
+.brief-divider { height:1px; background:var(--border-light); }
+
+/* NEWSLETTER */
+.newsletter { background:linear-gradient(135deg,var(--green),#0f3320); border-radius:12px; padding:22px; position:relative; overflow:hidden; }
+.newsletter::before { content:''; position:absolute; right:-30px; top:-30px; width:120px; height:120px; border-radius:50%; background:rgba(201,146,42,0.15); }
+.newsletter h3 { font-family:'Playfair Display',serif; font-size:16px; color:#fff; margin-bottom:8px; position:relative; }
+.newsletter p { font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:14px; line-height:1.6; position:relative; }
+.nl-input { width:100%; padding:8px 12px; border-radius:7px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.08); color:#fff; font-size:13px; font-family:'Noto Sans SC',sans-serif; outline:none; margin-bottom:8px; }
+.nl-input::placeholder{color:rgba(255,255,255,0.35)}
+.nl-btn { width:100%; padding:9px; border-radius:7px; background:var(--gold); color:var(--green); border:none; font-size:13px; font-weight:700; cursor:pointer; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; }
+.nl-btn:hover{background:var(--gold2)}
+
+/* HOT TAGS */
+.hot-tags { padding:12px 16px; display:flex; flex-wrap:wrap; gap:6px; }
+.hot-tag { padding:4px 11px; border-radius:5px; border:1px solid var(--border); background:var(--bg2); font-size:12px; color:var(--muted); cursor:pointer; transition:all 0.2s; }
+.hot-tag:hover { border-color:var(--green); color:var(--green); background:var(--green-light); }
+
+/* FOOTER */
+footer { position:relative; z-index:1; background:var(--ink2); color:rgba(255,255,255,0.5); padding:36px 48px; display:grid; grid-template-columns:auto 1fr auto; gap:40px; align-items:start; }
+.footer-brand .footer-logo { font-family:'Playfair Display',serif; font-size:20px; font-weight:800; color:var(--gold2); margin-bottom:8px; }
+.footer-brand p { font-size:12px; line-height:1.7; max-width:200px; }
+.footer-links-grid { display:flex; gap:40px; }
+.footer-col h4 { font-size:11px; color:rgba(255,255,255,0.7); letter-spacing:1px; margin-bottom:10px; font-family:'IBM Plex Mono',monospace; }
+.footer-col a { display:block; font-size:12px; color:rgba(255,255,255,0.4); text-decoration:none; margin-bottom:7px; transition:color 0.2s; cursor:pointer; }
+.footer-col a:hover{color:rgba(255,255,255,0.8)}
+.footer-copy { font-size:11px; text-align:right; line-height:1.8; }
+
+/* TOAST */
+.toast { position:fixed; bottom:28px; right:28px; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:12px 18px; font-size:13.5px; color:var(--ink); z-index:999; box-shadow:0 8px 32px rgba(26,74,46,0.15); animation:toastIn 0.3s ease; display:flex; align-items:center; gap:8px; transition:all 0.3s; }
+@keyframes toastIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* MODAL */
+.modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:200; display:flex; align-items:center; justify-content:center; padding:20px; backdrop-filter:blur(4px); animation:fadeIn 0.2s ease; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+.modal { background:var(--surface); border:1px solid var(--border); border-radius:16px; max-width:580px; width:100%; padding:32px; position:relative; animation:slideUp 0.25s ease; max-height:85vh; overflow-y:auto; }
+@keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.modal-close { position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:8px; border:1px solid var(--border); background:transparent; cursor:pointer; font-size:16px; color:var(--muted); display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
+.modal-close:hover { background:var(--bg2); color:var(--ink); }
+.modal-icon { width:64px; height:64px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:30px; margin-bottom:18px; }
+.modal-name { font-family:'Playfair Display',serif; font-size:24px; font-weight:700; color:var(--ink); margin-bottom:10px; }
+.modal-tags { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px; }
+.modal-desc { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:20px; }
+.modal-meta { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:22px; }
+.meta-item { background:var(--bg2); border-radius:8px; padding:12px 14px; }
+.meta-label { font-size:11px; color:var(--muted2); font-family:'IBM Plex Mono',monospace; margin-bottom:4px; }
+.meta-val { font-size:14px; font-weight:600; color:var(--ink); }
+.modal-markets { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:22px; }
+.market-tag { padding:4px 12px; border-radius:5px; background:var(--green-light); border:1px solid rgba(26,74,46,0.15); font-size:12px; color:var(--green); }
+.modal-cta { display:flex; gap:10px; }
+.modal-visit { flex:1; padding:12px; border-radius:9px; background:var(--green); color:#fff; border:none; font-size:14px; font-weight:700; cursor:pointer; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; text-align:center; text-decoration:none; display:block; }
+.modal-visit:hover { background:var(--green2); }
+.modal-save { padding:12px 20px; border-radius:9px; background:transparent; border:1px solid var(--border); color:var(--muted); font-size:14px; cursor:pointer; font-family:'Noto Sans SC',sans-serif; transition:all 0.2s; }
+.modal-save:hover { border-color:var(--gold); color:var(--gold); }
+
+@media(max-width:1000px){.main{grid-template-columns:1fr}.sidebar{display:none}.hero-inner{grid-template-columns:1fr}.hero-stats{display:none}}
+@media(max-width:700px){nav{padding:0 20px}.hero{padding:44px 20px}.main{padding:24px 20px}.tools-grid{grid-template-columns:1fr}footer{grid-template-columns:1fr}.footer-links-grid{flex-wrap:wrap;gap:20px}}
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <span class="ticker-label">MARKET</span>
+  <div style="overflow:hidden;padding-left:80px">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="ticker-name">SPX</span><span class="ticker-val">5,224.62</span><span class="ticker-chg up">+0.86%</span></span>
+      <span class="ticker-item"><span class="ticker-name">NDX</span><span class="ticker-val">18,339.44</span><span class="ticker-chg up">+1.22%</span></span>
+      <span class="ticker-item"><span class="ticker-name">HSI</span><span class="ticker-val">20,187.31</span><span class="ticker-chg dn">-0.43%</span></span>
+      <span class="ticker-item"><span class="ticker-name">USDJPY</span><span class="ticker-val">149.82</span><span class="ticker-chg up">+0.31%</span></span>
+      <span class="ticker-item"><span class="ticker-name">GOLD</span><span class="ticker-val">3,047.50</span><span class="ticker-chg up">+0.54%</span></span>
+      <span class="ticker-item"><span class="ticker-name">BTC</span><span class="ticker-val">84,210</span><span class="ticker-chg dn">-1.87%</span></span>
+      <span class="ticker-item"><span class="ticker-name">WTI</span><span class="ticker-val">68.44</span><span class="ticker-chg dn">-0.62%</span></span>
+      <span class="ticker-item"><span class="ticker-name">US10Y</span><span class="ticker-val">4.31%</span><span class="ticker-chg up">+2bp</span></span>
+      <span class="ticker-item"><span class="ticker-name">USDCNH</span><span class="ticker-val">7.2841</span><span class="ticker-chg dn">-0.12%</span></span>
+      <span class="ticker-item"><span class="ticker-name">SPX</span><span class="ticker-val">5,224.62</span><span class="ticker-chg up">+0.86%</span></span>
+      <span class="ticker-item"><span class="ticker-name">NDX</span><span class="ticker-val">18,339.44</span><span class="ticker-chg up">+1.22%</span></span>
+      <span class="ticker-item"><span class="ticker-name">HSI</span><span class="ticker-val">20,187.31</span><span class="ticker-chg dn">-0.43%</span></span>
+      <span class="ticker-item"><span class="ticker-name">USDJPY</span><span class="ticker-val">149.82</span><span class="ticker-chg up">+0.31%</span></span>
+      <span class="ticker-item"><span class="ticker-name">GOLD</span><span class="ticker-val">3,047.50</span><span class="ticker-chg up">+0.54%</span></span>
+      <span class="ticker-item"><span class="ticker-name">BTC</span><span class="ticker-val">84,210</span><span class="ticker-chg dn">-1.87%</span></span>
+      <span class="ticker-item"><span class="ticker-name">WTI</span><span class="ticker-val">68.44</span><span class="ticker-chg dn">-0.62%</span></span>
+      <span class="ticker-item"><span class="ticker-name">US10Y</span><span class="ticker-val">4.31%</span><span class="ticker-chg up">+2bp</span></span>
+      <span class="ticker-item"><span class="ticker-name">USDCNH</span><span class="ticker-val">7.2841</span><span class="ticker-chg dn">-0.12%</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-mark">F</div>
+    <div><span class="logo-text">FinAI Hub</span><span class="logo-sub">金融 AI 工具导航</span></div>
+  </a>
+  <div class="nav-right">
+    <div class="nav-search">
+      <span style="color:var(--muted2);font-size:15px">⌕</span>
+      <input type="text" id="searchInput" placeholder="搜索工具名称、功能..." oninput="onSearch(this.value)">
+    </div>
+    <button class="submit-btn" onclick="showToast('📬 收录申请通道即将开放')">提交收录</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">✦ FINANCIAL AI INTELLIGENCE HUB</div>
+      <h1 class="hero-title">专业投资者的<br><span class="gold">AI 工具全景</span></h1>
+      <p class="hero-desc">精选全球金融 AI 工具，覆盖港美股分析、量化策略、宏观研究、智能选股等核心场景，为专业投资者节省寻找工具的时间。</p>
+      <div class="hero-ctas">
+        <button class="cta-primary" onclick="document.querySelector('.main').scrollIntoView({behavior:'smooth'})">探索工具库</button>
+        <button class="cta-secondary" onclick="showToast('📄 研报资料库即将上线')">查看研报资料 →</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-num" id="statCount">—</span><div class="hero-stat-label">收录工具</div></div>
+      <div class="hero-stat"><span class="hero-stat-num">2,400+</span><div class="hero-stat-label">精选研报</div></div>
+      <div class="hero-stat"><span class="hero-stat-num">28k</span><div class="hero-stat-label">月活用户</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="content">
+    <!-- TOOLBAR -->
+    <div class="toolbar">
+      <div class="cat-tabs" id="catTabs">
+        <button class="cat-tab active" data-cat="all">⚡ 全部</button>
+        <button class="cat-tab" data-cat="分析">📊 智能分析</button>
+        <button class="cat-tab" data-cat="选股">🎯 AI选股</button>
+        <button class="cat-tab" data-cat="量化">🤖 量化策略</button>
+        <button class="cat-tab" data-cat="宏观">🌐 宏观研究</button>
+        <button class="cat-tab" data-cat="新闻">📰 新闻聚合</button>
+        <button class="cat-tab" data-cat="数据">🗄️ 数据平台</button>
+        <button class="cat-tab" data-cat="港美股">🇭🇰 港美股</button>
+      </div>
+      <select class="sort-select" id="sortSelect" onchange="renderTools()">
+        <option value="rating">按评分排序</option>
+        <option value="newest">最新收录</option>
+        <option value="name">按名称</option>
+      </select>
+    </div>
+
+    <div class="filter-row" id="filterRow">
+      <button class="filter-chip active" data-price="all" onclick="setFilter(this,'price')">全部定价</button>
+      <button class="filter-chip" data-price="free" onclick="setFilter(this,'price')">免费</button>
+      <button class="filter-chip" data-price="freemium" onclick="setFilter(this,'price')">Freemium</button>
+      <button class="filter-chip" data-price="paid" onclick="setFilter(this,'price')">付费</button>
+      <span style="width:1px;background:var(--border);margin:0 4px;align-self:stretch;display:inline-block"></span>
+      <button class="filter-chip active" data-mkt="all" onclick="setFilter(this,'mkt')">全部市场</button>
+      <button class="filter-chip" data-mkt="美股" onclick="setFilter(this,'mkt')">美股</button>
+      <button class="filter-chip" data-mkt="港股" onclick="setFilter(this,'mkt')">港股</button>
+      <button class="filter-chip" data-mkt="A股" onclick="setFilter(this,'mkt')">A股</button>
+      <button class="filter-chip" data-mkt="加密" onclick="setFilter(this,'mkt')">加密</button>
+    </div>
+
+    <div class="results-bar">
+      <div class="results-count">共 <span id="resultCount">0</span> 个工具</div>
+      <div class="view-toggle">
+        <button class="view-btn active" id="gridBtn" onclick="setView('grid')" title="网格视图">⊞</button>
+        <button class="view-btn" id="listBtn" onclick="setView('list')" title="列表视图">☰</button>
+      </div>
+    </div>
+
+    <div class="tools-grid" id="toolsGrid"></div>
+    <div class="pagination" id="pagination"></div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-head"><span class="dot"></span> 评分 TOP 5</div>
+      <div class="rank-list" id="rankList"></div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-head"><span class="dot" style="background:var(--teal)"></span> 市场速览</div>
+      <div class="brief-list">
+        <div class="brief-row"><span class="brief-label">SPX</span><div style="text-align:right"><div class="brief-val">5,224.62</div><div class="brief-chg up">+0.86%</div></div></div>
+        <div class="brief-divider"></div>
+        <div class="brief-row"><span class="brief-label">HSI</span><div style="text-align:right"><div class="brief-val">20,187.31</div><div class="brief-chg dn">-0.43%</div></div></div>
+        <div class="brief-divider"></div>
+        <div class="brief-row"><span class="brief-label">USD/JPY</span><div style="text-align:right"><div class="brief-val">149.82</div><div class="brief-chg up">+0.31%</div></div></div>
+        <div class="brief-divider"></div>
+        <div class="brief-row"><span class="brief-label">GOLD</span><div style="text-align:right"><div class="brief-val">3,047.50</div><div class="brief-chg up">+0.54%</div></div></div>
+        <div class="brief-divider"></div>
+        <div class="brief-row"><span class="brief-label">BTC</span><div style="text-align:right"><div class="brief-val">84,210</div><div class="brief-chg dn">-1.87%</div></div></div>
+      </div>
+    </div>
+
+    <div class="newsletter">
+      <h3>📬 每周工具精选</h3>
+      <p>每周五发送最新金融AI工具测评与精选研报，专为港美股投资者定制。</p>
+      <input class="nl-input" type="email" placeholder="your@email.com">
+      <button class="nl-btn" onclick="showToast('✅ 订阅成功！感谢关注')">订阅周报</button>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-head"><span class="dot" style="background:var(--green)"></span> 热门标签</div>
+      <div class="hot-tags">
+        <span class="hot-tag" onclick="setSearchAndRender('BOJ')">BOJ政策</span>
+        <span class="hot-tag" onclick="setSearchAndRender('宏观')">宏观研究</span>
+        <span class="hot-tag" onclick="setSearchAndRender('量化')">量化策略</span>
+        <span class="hot-tag" onclick="setSearchAndRender('港股')">港股</span>
+        <span class="hot-tag" onclick="setSearchAndRender('选股')">AI选股</span>
+        <span class="hot-tag" onclick="setSearchAndRender('财报')">财报分析</span>
+        <span class="hot-tag" onclick="setSearchAndRender('期权')">期权流向</span>
+        <span class="hot-tag" onclick="setSearchAndRender('数据')">数据平台</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">FinAI Hub</div>
+    <p>专为专业投资者打造的 AI 工具导航，覆盖港美股、宏观、量化等核心场景。</p>
+  </div>
+  <div class="footer-links-grid">
+    <div class="footer-col">
+      <h4>TOOLS</h4>
+      <a>智能分析</a><a>AI选股</a><a>量化策略</a><a>宏观研究</a>
+    </div>
+    <div class="footer-col">
+      <h4>RESOURCES</h4>
+      <a>精选研报</a><a>财经日历</a><a>数据平台</a><a>学习资源</a>
+    </div>
+    <div class="footer-col">
+      <h4>ABOUT</h4>
+      <a>关于我们</a><a>广告合作</a><a>提交收录</a><a>友链交换</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 FinAI Hub<br>每日更新 · 专业可信</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" style="display:none" onclick="closeModal(event)">
+  <div class="modal" id="modalBody"></div>
+</div>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+const TOOLS = [
+  { id:1, name:"Bloomberg Terminal AI", desc:"彭博终端内置 AI 功能，整合实时数据与历史研究，自然语言查询财务数据、分析师预测和市场新闻，是机构投资者标配。", icon:"📊", iconBg:"linear-gradient(135deg,#e8f4ee,#d0e8d8)", category:"分析", tags:["智能分析","机构级"], pricing:"paid", rating:4.9, users:"2.1M 用户", url:"https://bloomberg.com/professional", featured:true, markets:["美股","港股","全球"], addedAt:"2026-01-01" },
+  { id:2, name:"Perplexity Finance", desc:"实时搜索+AI总结，快速找到最新财报、新闻、分析师报告并给出摘要，带引用来源，适合研究辅助和快速了解个股动态。", icon:"🔍", iconBg:"linear-gradient(135deg,#fef5e4,#fde8c0)", category:"分析", tags:["AI搜索","实时资讯"], pricing:"free", rating:4.6, users:"28M 月访问", url:"https://perplexity.ai", featured:true, markets:["全球"], addedAt:"2026-01-05" },
+  { id:3, name:"Finviz AI Screener", desc:"AI 增强的股票筛选器，支持自然语言输入条件，自动转化为技术面+基本面过滤器，热图和可视化一流。", icon:"🎯", iconBg:"linear-gradient(135deg,#eef2ff,#dde4ff)", category:"选股", tags:["AI选股","技术分析"], pricing:"paid", rating:4.7, users:"8.5M 月访问", url:"https://finviz.com", featured:false, markets:["美股"], addedAt:"2026-01-10" },
+  { id:4, name:"QuantConnect AI", desc:"AI 辅助策略生成，用自然语言描述交易逻辑，自动生成 Python 回测代码，支持 US/HK/Crypto 多市场。", icon:"🤖", iconBg:"linear-gradient(135deg,#e8f8f5,#c8f0e8)", category:"量化", tags:["量化策略","回测"], pricing:"freemium", rating:4.5, users:"320K 用户", url:"https://quantconnect.com", featured:false, markets:["美股","港股","加密"], addedAt:"2026-01-15" },
+  { id:5, name:"MacroAxis AI", desc:"AI 驱动的宏观经济分析平台，覆盖全球央行政策、通胀预测、汇率模型，支持日债/日元等宏观议题深度分析。", icon:"🌐", iconBg:"linear-gradient(135deg,#fff5e6,#ffe8c2)", category:"宏观", tags:["宏观研究","汇率"], pricing:"free", rating:4.3, users:"180K 月访问", url:"https://macroaxis.com", featured:false, markets:["全球"], addedAt:"2026-01-20" },
+  { id:6, name:"富途 AI 研究助手", desc:"富途牛牛内置 AI 功能，支持财报解读、个股分析、行情问答，中文支持友好，港美股数据实时覆盖。", icon:"📈", iconBg:"linear-gradient(135deg,#fdeef5,#facce0)", category:"港美股", tags:["港美股","中文友好"], pricing:"free", rating:4.4, users:"港美股首选", url:"https://futubull.com", featured:true, markets:["美股","港股"], addedAt:"2026-01-22" },
+  { id:7, name:"Alphasense", desc:"机构级 AI 搜索引擎，专为投资研究设计，实时分析财报、新闻、研报的情绪倾向，自动提炼关键信息。", icon:"📰", iconBg:"linear-gradient(135deg,#e8f4ee,#c8e8d4)", category:"新闻", tags:["机构级","情绪分析"], pricing:"paid", rating:4.8, users:"机构用户为主", url:"https://alpha-sense.com", featured:false, markets:["全球"], addedAt:"2026-02-01" },
+  { id:8, name:"TradingView AI", desc:"全球最大图表平台内置 AI 功能，支持自然语言生成 Pine Script 策略，智能识别K线形态，社区策略共享。", icon:"📉", iconBg:"linear-gradient(135deg,#e8f0ff,#c8d4ff)", category:"分析", tags:["图表分析","策略生成"], pricing:"freemium", rating:4.8, users:"50M 月访问", url:"https://tradingview.com", featured:true, markets:["美股","港股","加密","外汇"], addedAt:"2026-02-05" },
+  { id:9, name:"Kensho AI (S&P Global)", desc:"标普全球旗下AI分析平台，专注事件驱动分析，量化历史上同类事件对市场的影响，机构研究必备。", icon:"🏛️", iconBg:"linear-gradient(135deg,#fff0e8,#ffd8b8)", category:"分析", tags:["事件驱动","机构级"], pricing:"paid", rating:4.7, users:"机构用户", url:"https://kensho.com", featured:false, markets:["全球"], addedAt:"2026-02-10" },
+  { id:10, name:"雪球 AI 助手", desc:"雪球平台内置 AI 功能，聚合A股/港股社区讨论情绪，AI解读财报要点，适合关注A股和港股的中文投资者。", icon:"❄️", iconBg:"linear-gradient(135deg,#e8f4ff,#c8dcff)", category:"港美股", tags:["A股","港股","情绪分析"], pricing:"free", rating:4.2, users:"国内A股首选", url:"https://xueqiu.com", featured:false, markets:["A股","港股"], addedAt:"2026-02-15" },
+  { id:11, name:"Snowflake Cortex AI", desc:"数据仓库+AI能力结合，支持自然语言查询金融数据集，适合有技术能力的量化研究员构建自定义数据管道。", icon:"🗄️", iconBg:"linear-gradient(135deg,#f0f4ff,#dce4ff)", category:"数据", tags:["数据平台","企业级"], pricing:"paid", rating:4.4, users:"企业级", url:"https://snowflake.com", featured:false, markets:["全球"], addedAt:"2026-02-20" },
+  { id:12, name:"Koyfin AI", desc:"面向散户和专业人士的 Bloomberg 替代品，AI 辅助财务分析，支持全球股票、ETF、宏观数据，价格仅为彭博的1/10。", icon:"💹", iconBg:"linear-gradient(135deg,#e8fff4,#c0f0d8)", category:"分析", tags:["Bloomberg替代","全球股票"], pricing:"freemium", rating:4.6, users:"120K 用户", url:"https://koyfin.com", featured:true, markets:["美股","港股","全球"], addedAt:"2026-03-01" },
+  { id:13, name:"Unusual Whales", desc:"期权异动追踪平台，AI 标记机构级大单和异常流向，追踪国会议员持仓，散户跟单热门工具。", icon:"🐋", iconBg:"linear-gradient(135deg,#f0e8ff,#dcc8ff)", category:"选股", tags:["期权流向","机构追踪"], pricing:"paid", rating:4.5, users:"280K 用户", url:"https://unusualwhales.com", featured:false, markets:["美股"], addedAt:"2026-03-05" },
+  { id:14, name:"Wisesheets AI", desc:"Google Sheets / Excel 插件，AI 直接拉取股票数据、财报、估值，让 Excel 变成个人Bloomberg终端。", icon:"📋", iconBg:"linear-gradient(135deg,#f0fff0,#d0f0d0)", category:"数据", tags:["Excel插件","数据拉取"], pricing:"paid", rating:4.3, users:"85K 用户", url:"https://wisesheets.io", featured:false, markets:["美股","全球"], addedAt:"2026-03-10" },
+  { id:15, name:"Earnings Whispers AI", desc:"专注财报季的 AI 工具，预测财报预期差（EPS Beat/Miss 概率），财报日历+历史反应数据可视化。", icon:"📅", iconBg:"linear-gradient(135deg,#fff8e0,#ffecc0)", category:"分析", tags:["财报分析","预期差"], pricing:"freemium", rating:4.4, users:"1.2M 月访问", url:"https://earningswhispers.com", featured:false, markets:["美股"], addedAt:"2026-03-12" }
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let state = { cat:'all', search:'', price:'all', mkt:'all', sort:'rating', view:'grid', page:1 };
+const PER_PAGE = 8;
+
+// ─── FILTER + SORT ────────────────────────────────────────────────────────────
+function getFiltered() {
+  let arr = [...TOOLS];
+  if (state.cat !== 'all') arr = arr.filter(t => t.category === state.cat);
+  if (state.price !== 'all') arr = arr.filter(t => t.pricing === state.price);
+  if (state.mkt !== 'all') arr = arr.filter(t => t.markets.includes(state.mkt));
+  if (state.search) {
+    const q = state.search.toLowerCase();
+    arr = arr.filter(t =>
+      t.name.toLowerCase().includes(q) ||
+      t.desc.toLowerCase().includes(q) ||
+      t.tags.some(tg => tg.toLowerCase().includes(q)) ||
+      t.category.toLowerCase().includes(q) ||
+      t.markets.some(m => m.toLowerCase().includes(q))
+    );
+  }
+  if (state.sort === 'rating') arr.sort((a,b) => b.rating - a.rating);
+  else if (state.sort === 'newest') arr.sort((a,b) => new Date(b.addedAt) - new Date(a.addedAt));
+  else if (state.sort === 'name') arr.sort((a,b) => a.name.localeCompare(b.name));
+  return arr;
+}
+
+// ─── RENDER ───────────────────────────────────────────────────────────────────
+function pricingTag(p) {
+  if (p==='free') return `<span class="tag tag-free">免费</span>`;
+  if (p==='paid') return `<span class="tag tag-paid">付费</span>`;
+  return `<span class="tag tag-freemium">Freemium</span>`;
+}
+function stars(r) {
+  const full = Math.floor(r), half = r%1>=0.5;
+  return '★'.repeat(full) + (half?'½':'') + '☆'.repeat(5-full-(half?1:0));
+}
+
+function renderTools() {
+  const filtered = getFiltered();
+  const total = filtered.length;
+  const totalPages = Math.ceil(total / PER_PAGE);
+  if (state.page > totalPages) state.page = 1;
+  const paged = filtered.slice((state.page-1)*PER_PAGE, state.page*PER_PAGE);
+
+  document.getElementById('resultCount').textContent = total;
+  const grid = document.getElementById('toolsGrid');
+  grid.className = 'tools-grid' + (state.view==='list' ? ' list-view' : '');
+
+  if (paged.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><div class="emoji">🔍</div><h3>没有找到匹配的工具</h3><p>试试调整筛选条件或搜索关键词</p></div>`;
+    document.getElementById('pagination').innerHTML = '';
+    return;
+  }
+
+  grid.innerHTML = paged.map((t, i) => `
+    <a class="tool-card${t.featured?' featured':''}" style="animation-delay:${i*0.05}s"
+       href="#" onclick="openModal(${t.id}); return false;">
+      <div class="tool-top">
+        <div class="tool-icon" style="background:${t.iconBg}">${t.icon}</div>
+        <div class="tool-meta">
+          <div class="tool-name">${t.name}</div>
+          <div class="tool-tags">
+            <span class="tag tag-cat">${t.category}</span>
+            ${pricingTag(t.pricing)}
+            ${t.tags.slice(0,1).map(tg=>`<span class="tag tag-mkt">${tg}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-desc">${t.desc}</div>
+        <div class="tool-footer">
+          <div class="tool-rating">${stars(t.rating)} <span>${t.rating}</span></div>
+          <div class="tool-users">${t.users}</div>
+          <span class="tool-btn">查看详情 →</span>
+        </div>
+      </div>
+    </a>
+  `).join('');
+
+  // pagination
+  const pg = document.getElementById('pagination');
+  if (totalPages <= 1) { pg.innerHTML=''; return; }
+  let html = `<button class="page-btn" onclick="goPage(${state.page-1})" ${state.page===1?'disabled':''}>‹</button>`;
+  for (let i=1;i<=totalPages;i++) {
+    html += `<button class="page-btn${i===state.page?' active':''}" onclick="goPage(${i})">${i}</button>`;
+  }
+  html += `<button class="page-btn" onclick="goPage(${state.page+1})" ${state.page===totalPages?'disabled':''}>›</button>`;
+  pg.innerHTML = html;
+}
+
+function renderRanking() {
+  const top5 = [...TOOLS].sort((a,b)=>b.rating-a.rating).slice(0,5);
+  const cls = ['g','s','b','o','o'];
+  document.getElementById('rankList').innerHTML = top5.map((t,i)=>`
+    <div class="rank-row" onclick="openModal(${t.id})">
+      <div class="rank-n ${cls[i]}">${i+1}</div>
+      <div class="rank-ico" style="background:${t.iconBg}">${t.icon}</div>
+      <div class="rank-info"><div class="rank-name">${t.name}</div><div class="rank-cat">${t.category}</div></div>
+      <div class="rank-score up">★${t.rating}</div>
+    </div>
+  `).join('');
+}
+
+// ─── MODAL ────────────────────────────────────────────────────────────────────
+function openModal(id) {
+  const t = TOOLS.find(x=>x.id===id);
+  if (!t) return;
+  const pricingLabel = {free:'免费',paid:'付费',freemium:'免费+付费版'};
+  document.getElementById('modalBody').innerHTML = `
+    <button class="modal-close" onclick="document.getElementById('modal').style.display='none'">✕</button>
+    <div class="modal-icon" style="background:${t.iconBg}">${t.icon}</div>
+    <div class="modal-name">${t.name}</div>
+    <div class="modal-tags">
+      <span class="tag tag-cat">${t.category}</span>
+      ${pricingTag(t.pricing)}
+      ${t.tags.map(tg=>`<span class="tag tag-mkt">${tg}</span>`).join('')}
+    </div>
+    <div class="modal-desc">${t.desc}</div>
+    <div class="modal-meta">
+      <div class="meta-item"><div class="meta-label">用户评分</div><div class="meta-val" style="color:var(--gold)">★ ${t.rating} / 5.0</div></div>
+      <div class="meta-item"><div class="meta-label">定价模式</div><div class="meta-val">${pricingLabel[t.pricing]}</div></div>
+      <div class="meta-item"><div class="meta-label">用户规模</div><div class="meta-val">${t.users}</div></div>
+      <div class="meta-item"><div class="meta-label">收录时间</div><div class="meta-val">${t.addedAt}</div></div>
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-family:'IBM Plex Mono',monospace">覆盖市场</div>
+    <div class="modal-markets">${t.markets.map(m=>`<span class="market-tag">${m}</span>`).join('')}</div>
+    <div class="modal-cta">
+      <a class="modal-visit" href="${t.url}" target="_blank" onclick="showToast('🔗 正在跳转...')">前往使用 →</a>
+      <button class="modal-save" onclick="showToast('⭐ 已收藏到书签')">收藏</button>
+    </div>
+  `;
+  document.getElementById('modal').style.display = 'flex';
+}
+function closeModal(e) {
+  if (e.target.id==='modal') document.getElementById('modal').style.display='none';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('modal').style.display='none'; });
+
+// ─── CONTROLS ─────────────────────────────────────────────────────────────────
+document.getElementById('catTabs').addEventListener('click', e => {
+  const btn = e.target.closest('.cat-tab');
+  if (!btn) return;
+  document.querySelectorAll('.cat-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  state.cat = btn.dataset.cat;
+  state.page = 1;
+  renderTools();
+});
+
+function setFilter(el, type) {
+  const val = type==='price' ? el.dataset.price : el.dataset.mkt;
+  document.querySelectorAll(`[data-${type}]`).forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  if (type==='price') state.price = val;
+  else state.mkt = val;
+  state.page = 1;
+  renderTools();
+}
+
+function onSearch(val) {
+  state.search = val;
+  state.page = 1;
+  renderTools();
+}
+
+function setSearchAndRender(keyword) {
+  state.search = keyword;
+  document.getElementById('searchInput').value = keyword;
+  document.querySelector('.main').scrollIntoView({behavior:'smooth'});
+  renderTools();
+}
+
+function setView(v) {
+  state.view = v;
+  document.getElementById('gridBtn').classList.toggle('active', v==='grid');
+  document.getElementById('listBtn').classList.toggle('active', v==='list');
+  renderTools();
+}
+
+function goPage(p) {
+  const total = Math.ceil(getFiltered().length / PER_PAGE);
+  if (p<1||p>total) return;
+  state.page = p;
+  renderTools();
+  document.querySelector('.main').scrollIntoView({behavior:'smooth'});
+}
+
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(()=>{ t.style.opacity='0'; t.style.transform='translateY(8px)'; setTimeout(()=>t.remove(),300); }, 2500);
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+document.getElementById('statCount').textContent = TOOLS.length + '+';
+renderTools();
+renderRanking();
+</script>
+</body>
+</html>
